@@ -1,0 +1,1099 @@
+{
+	"info": {
+		"_postman_id": "dc423460-1017-4c44-9ff4-30a6d2f2ac49",
+		"name": "Cisco_ISE_MNT_APIs",
+		"description": "# Cisco ISE 3.0 MNT REST APIs\n\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specfically, you will want to set: \n- `ise_mnt`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ActiveCount",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/ActiveCount",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"ActiveCount"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/ActiveCount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"ActiveCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONIDSSO=19D6108E00E67E4CC5287999EE42AE9E; Path=/; Secure; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "APPSESSIONID=84CEFD4C41A7369DB4189BCF15CC26E5; Path=/admin; Secure; HttpOnly"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:03:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
+				}
+			]
+		},
+		{
+			"name": "License/Base",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/ActiveCount",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"ActiveCount"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/ActiveCount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"ActiveCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:03:55 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
+				}
+			]
+		},
+		{
+			"name": "ActiveList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/ActiveList",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"ActiveList"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/ActiveList",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"ActiveList"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:04:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
+				}
+			]
+		},
+		{
+			"name": "Session/AuthList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/AuthList/null/null",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"AuthList",
+						"null",
+						"null"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/AuthList/null/null",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"AuthList",
+								"null",
+								"null"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:04:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
+				}
+			]
+		},
+		{
+			"name": "PostureCount",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/PostureCount",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"PostureCount"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/PostureCount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"PostureCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:05:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
+				}
+			]
+		},
+		{
+			"name": "ProfilerCount",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/ProfilerCount",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"ProfilerCount"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Session/ProfilerCount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Session",
+								"ProfilerCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:05:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
+				}
+			]
+		},
+		{
+			"name": "Sessions by MAC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/MACAddress/{{mac}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"MACAddress",
+						"{{mac}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sessions by Username",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/UserName/{{username}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"UserName",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sessions by NAS IP",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/IPAddress/{{nas_ipv4}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"IPAddress",
+						"{{nas_ipv4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sessions by Endpoint IP",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/EndPointIPAddress/{{endpoint_ipv4}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"EndPointIPAddress",
+						"{{endpoint_ipv4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sessions by SessionID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/Active/SessionID/{{session_id}}/0",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"Active",
+						"SessionID",
+						"{{session_id}}",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Sessions",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Session/Delete/All",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Session",
+						"Delete",
+						"All"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MNT Version",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/Version",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"Version"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "3.0.0.458",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/Version",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"Version"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "170"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONIDSSO=AAAC2AD9DC30012FD072A529E40377B9; Path=/; Secure; HttpOnly"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "APPSESSIONID=C03BD674E4E831C1824D3B6992FF089F; Path=/admin; Secure; HttpOnly"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 22:48:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<product name=\"Cisco Identity Services Engine\">\n    <version>3.0.0.458</version>\n    <type_of_node>0</type_of_node>\n</product>"
+				}
+			]
+		},
+		{
+			"name": "FailureReasons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/FailureReasons",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"FailureReasons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AuthenticationStatus by MAC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/AuthStatus/MACAddress/{{MAC}}/{{SECONDS}}/{{RECORDS}}/All",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"AuthStatus",
+						"MACAddress",
+						"{{MAC}}",
+						"{{SECONDS}}",
+						"{{RECORDS}}",
+						"All"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session Reauthentication by MAC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/CoA/Reauth/{{PSN_NAME}}/{{ENDPOINT_MAC}}/{{REAUTH_TYPE}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"CoA",
+						"Reauth",
+						"{{PSN_NAME}}",
+						"{{ENDPOINT_MAC}}",
+						"{{REAUTH_TYPE}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session Disconnect",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/CoA/Disconnect>/{{PSN_NAME}}/{{MAC}}/{{DISCONNECT_TYPE}}/{{NAS_IPV4}}/{{ENDPOINT_IP??}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"CoA",
+						"Disconnect>",
+						"{{PSN_NAME}}",
+						"{{MAC}}",
+						"{{DISCONNECT_TYPE}}",
+						"{{NAS_IPV4}}",
+						"{{ENDPOINT_IP??}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccountStatus by MAC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/AcctStatus/MACAddress/{{mac}}/{{duration}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"AcctStatus",
+						"MACAddress",
+						"{{mac}}",
+						"{{duration}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{rest_password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{rest_username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ise_mnt",
+			"value": "ise.securitydemo.net"
+		},
+		{
+			"key": "base_url",
+			"value": "https://{{ise_mnt}}/admin/API/mnt"
+		},
+		{
+			"key": "rest_username",
+			"value": "admin"
+		},
+		{
+			"key": "rest_password",
+			"value": "C1sco12345"
+		}
+	]
+}
