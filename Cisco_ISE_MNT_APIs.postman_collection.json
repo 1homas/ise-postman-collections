@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "dc423460-1017-4c44-9ff4-30a6d2f2ac49",
 		"name": "Cisco_ISE_MNT_APIs",
-		"description": "# Cisco ISE 3.0 MNT REST APIs\n\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specfically, you will want to set: \n- `ise_mnt`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
+		"description": "# Cisco ISE 3.0 MNT REST APIs\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Documentation\nSee the complete documentation for the [Cisco ISE Monitoring REST APIs](https://cs.co/ise-api).\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection uses collection variables that you will want to *update* or *override* with your own environment variables for your ISE deployment.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -24,19 +24,23 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/ActiveCount",
+					"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"ActiveCount"
 					]
-				}
+				},
+				"description": "## ActiveCount\nLists the number of active sessions.\n\n`https://<ISE>/admin/API/mnt/Session/ActiveCount`"
 			},
 			"response": [
 				{
-					"name": "0",
+					"name": "ActiveCount 0",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -53,11 +57,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/Session/ActiveCount",
+							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"admin",
+								"API",
+								"mnt",
 								"Session",
 								"ActiveCount"
 							]
@@ -126,34 +133,9 @@
 					],
 					"cookie": [],
 					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
-				}
-			]
-		},
-		{
-			"name": "License/Base",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/xml",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{base_url}}/Session/ActiveCount",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"Session",
-						"ActiveCount"
-					]
-				}
-			},
-			"response": [
+				},
 				{
-					"name": "0",
+					"name": "ActiveCount 1",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -161,14 +143,23 @@
 								"key": "Accept",
 								"value": "application/xml",
 								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/Session/ActiveCount",
+							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"admin",
+								"API",
+								"mnt",
 								"Session",
 								"ActiveCount"
 							]
@@ -212,7 +203,7 @@
 						},
 						{
 							"key": "Content-Security-Policy",
-							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
 						},
 						{
 							"key": "X-XSS-Protection",
@@ -220,7 +211,7 @@
 						},
 						{
 							"key": "Date",
-							"value": "Thu, 25 Mar 2021 19:03:55 GMT"
+							"value": "Sun, 09 May 2021 20:04:20 GMT"
 						},
 						{
 							"key": "Server",
@@ -228,217 +219,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
-				}
-			]
-		},
-		{
-			"name": "ActiveList",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/xml",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{base_url}}/Session/ActiveList",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"Session",
-						"ActiveList"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "0",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/Session/ActiveList",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Session",
-								"ActiveList"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/xml;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "90"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Expires",
-							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 25 Mar 2021 19:04:27 GMT"
-						},
-						{
-							"key": "Server",
-							"value": ""
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
-				}
-			]
-		},
-		{
-			"name": "Session/AuthList",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/xml",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{base_url}}/Session/AuthList/null/null",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"Session",
-						"AuthList",
-						"null",
-						"null"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "0",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{base_url}}/Session/AuthList/null/null",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"Session",
-								"AuthList",
-								"null",
-								"null"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "xml",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/xml;charset=UTF-8"
-						},
-						{
-							"key": "Content-Length",
-							"value": "90"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "private"
-						},
-						{
-							"key": "Expires",
-							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
-						},
-						{
-							"key": "X-Frame-Options",
-							"value": "SAMEORIGIN"
-						},
-						{
-							"key": "Strict-Transport-Security",
-							"value": "max-age=31536000; includeSubDomains"
-						},
-						{
-							"key": "X-Content-Type-Options",
-							"value": "nosniff"
-						},
-						{
-							"key": "Content-Security-Policy",
-							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
-						},
-						{
-							"key": "X-XSS-Protection",
-							"value": "1; mode=block"
-						},
-						{
-							"key": "Date",
-							"value": "Thu, 25 Mar 2021 19:04:44 GMT"
-						},
-						{
-							"key": "Server",
-							"value": ""
-						}
-					],
-					"cookie": [],
-					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>1</count>\n</sessionCount>"
 				}
 			]
 		},
@@ -454,19 +235,23 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/PostureCount",
+					"raw": "{{base_url}}/admin/API/mnt/Session/PostureCount",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"PostureCount"
 					]
-				}
+				},
+				"description": "## PostureCount\nLists the number of Postured endpoints. \n`https://<ISE>/admin/API/mnt/Session/PostureCount`"
 			},
 			"response": [
 				{
-					"name": "0",
+					"name": "PostureCount 0",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -477,11 +262,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/Session/PostureCount",
+							"raw": "{{base_url}}/admin/API/mnt/Session/PostureCount",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"admin",
+								"API",
+								"mnt",
 								"Session",
 								"PostureCount"
 							]
@@ -557,19 +345,23 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/ProfilerCount",
+					"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"ProfilerCount"
 					]
-				}
+				},
+				"description": "## ProfilerCount\nLists the number of active Profiler service sessions.\n`https://<ISE>/admin/API/mnt/Session/ProfilerCount`"
 			},
 			"response": [
 				{
-					"name": "0",
+					"name": "ProfilerCount 0",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -580,11 +372,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/Session/ProfilerCount",
+							"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"admin",
+								"API",
+								"mnt",
 								"Session",
 								"ProfilerCount"
 							]
@@ -645,11 +440,92 @@
 					],
 					"cookie": [],
 					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>0</count>\n</sessionCount>"
+				},
+				{
+					"name": "ProfilerCount 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"ProfilerCount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 20:05:05 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionCount>\n    <count>1</count>\n</sessionCount>"
 				}
 			]
 		},
 		{
-			"name": "Sessions by MAC",
+			"name": "ActiveList (all)",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -660,21 +536,586 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/MACAddress/{{mac}}",
+					"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
+						"Session",
+						"ActiveList"
+					]
+				},
+				"description": "## ActiveList\nLists all active sessions.\n`https://<ISE>/admin/API/mnt/Session/ActiveList`"
+			},
+			"response": [
+				{
+					"name": "ActiveList 0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"ActiveList"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:04:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
+				},
+				{
+					"name": "ActiveList (1homas)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"ActiveList"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "481"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 20:14:07 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"1\">\n    <activeSession>\n        <user_name>1homas</user_name>\n        <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n        <nas_ip_address>198.19.11.10</nas_ip_address>\n        <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n        <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n        <server>ise</server>\n        <framed_ip_address>198.19.2.11</framed_ip_address>\n        <framed_ipv6_address/>\n    </activeSession>\n</activeList>"
+				}
+			]
+		},
+		{
+			"name": "AuthList/start_time/end_time",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/{{start_time}}/{{end_time}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admin",
+						"API",
+						"mnt",
+						"Session",
+						"AuthList",
+						"{{start_time}}",
+						"{{end_time}}"
+					]
+				},
+				"description": "Enter the date and time for the `start_time` and `end_time` relative to the ISE node's time (recommended is UTC) in the following format: `null` or `YYYY-MM-DD hh:mm:ss.s`\nwhere:\n- `YYYY` : four-digit year\n- `MM` : two-digit month (01=January, etc.)\n- `DD` : two-digit day of the month (01-31)\n- `hh` : two-digit hour (00-23)\n- `mm` : two-digit minute (00-59)\n- `ss` : two-digit second (00-59)\n- `s` : one or more digits representing a decimal fraction of a second"
+			},
+			"response": [
+				{
+					"name": "AuthList 0",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/null/null",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"AuthList",
+								"null",
+								"null"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Mar 2021 19:04:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"0\"/>"
+				},
+				{
+					"name": "AuthList (1homas)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/null/null",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"AuthList",
+								"null",
+								"null"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "481"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 20:16:14 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeList noOfActiveSession=\"1\">\n    <activeSession>\n        <user_name>1homas</user_name>\n        <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n        <nas_ip_address>198.19.11.10</nas_ip_address>\n        <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n        <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n        <server>ise</server>\n        <framed_ip_address>198.19.2.11</framed_ip_address>\n        <framed_ipv6_address/>\n    </activeSession>\n</activeList>"
+				}
+			]
+		},
+		{
+			"name": "Session by MACAddress",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"MACAddress",
 						"{{mac}}"
 					]
-				}
+				},
+				"description": "## Session by MACAddress\nSearches the database for the latest session that contains the specified MAC address. The MAC address format is `XX:XX:XX:XX:XX:XX ` and is not case sensitive (0a:0B:0c:0D:0e:0F). The MAC address serves as the only unique key to finding the correct session you want to monitor.\n\n`https://<ISE>/admin/API/mnt/Session/MACAddress/<macaddress>`"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "00:00:00:00:00:00 (not found)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"MACAddress",
+								"{{mac}}"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "594"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:52:04 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mnt-rest-result>\n    <http-code>500</http-code>\n    <cpm-code>34110</cpm-code>\n    <description>Server has encountered error while processing the REST request</description>\n    <module-name>MnT</module-name>\n    <internal-error-info>Error in generating XML output. Error message = Session data is not available for 00:00:00:00:00:00.</internal-error-info>\n    <requested-operation>Get By Type</requested-operation>\n    <resource-id>N/A</resource-id>\n    <resource-name>N/A</resource-name>\n    <resource-type>RESTSDStatus</resource-type>\n    <status>SERVER_ERROR</status>\n</mnt-rest-result>"
+				},
+				{
+					"name": "98:10:E8:14:7A:67",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"MACAddress",
+								"{{mac}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:46:58 GMT"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionParameters>\n    <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n    <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n    <user_name>1homas</user_name>\n    <nas_ip_address>198.19.11.10</nas_ip_address>\n    <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n    <orig_calling_station_id>98-10-e8-14-7a-67</orig_calling_station_id>\n    <cpmsession_id>0a0b13c600000000523f9860</cpmsession_id>\n    <destination_ip_address>198.18.133.27</destination_ip_address>\n    <device_ip_address>198.19.11.10</device_ip_address>\n    <identity_group>Profiled</identity_group>\n    <network_device_name>WLC</network_device_name>\n    <acs_server>ise</acs_server>\n    <authentication_method>dot1x</authentication_method>\n    <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n    <framed_ip_address>198.19.2.11</framed_ip_address>\n    <auth_acs_timestamp>2021-05-09T20:30:32.674Z</auth_acs_timestamp>\n    <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n    <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/6; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n    <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n    <posture_status></posture_status>\n    <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n    <service_type>Framed</service_type>\n    <message_code>5200</message_code>\n    <auth_acsview_timestamp>2021-05-09T20:30:32.674Z</auth_acsview_timestamp>\n    <auth_id>1620243689019468</auth_id>\n    <identity_store>Internal Users</identity_store>\n    <location>All Locations</location>\n    <device_type>All Device Types</device_type>\n    <response_time>42</response_time>\n    <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;25SessionID=ise/409618222/6;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/6:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n    <acct_id>1620243689019409</acct_id>\n    <acct_acs_timestamp>2021-05-09T20:00:35.462Z</acct_acs_timestamp>\n    <acct_acsview_timestamp>2021-05-09T20:00:35.462Z</acct_acsview_timestamp>\n    <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n    <acct_status_type>Start</acct_status_type>\n    <acct_input_octets>4533525</acct_input_octets>\n    <acct_output_octets>143004377</acct_output_octets>\n    <acct_input_packets>62024</acct_input_packets>\n    <acct_output_packets>101510</acct_output_packets>\n    <acct_authentic>RADIUS</acct_authentic>\n    <event_timestamp>1620590435</event_timestamp>\n    <started xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</started>\n    <stopped xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</stopped>\n    <endpoint_policy>Apple-iPhone</endpoint_policy>\n</sessionParameters>"
+				}
+			]
 		},
 		{
-			"name": "Sessions by Username",
+			"name": "Session by Username",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -685,21 +1126,116 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/UserName/{{username}}",
+					"raw": "{{base_url}}/admin/API/mnt/Session/UserName/{{username}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"UserName",
 						"{{username}}"
 					]
-				}
+				},
+				"description": "## Session by UserName\nSearches the database for the latest session that contains the specified username. Usernames must conform to the same policy used for network usernames. The only invalid character for the Monitoring REST APIs is the backslash (\\) character.\n\n`https://<ISE>/admin/API/mnt/Session/UserName/<username>`"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "1homas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/UserName/{{username}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"UserName",
+								"{{username}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:49:48 GMT"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionParameters>\n    <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n    <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n    <user_name>1homas</user_name>\n    <nas_ip_address>198.19.11.10</nas_ip_address>\n    <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n    <orig_calling_station_id>98-10-e8-14-7a-67</orig_calling_station_id>\n    <cpmsession_id>0a0b13c600000000523f9860</cpmsession_id>\n    <destination_ip_address>198.18.133.27</destination_ip_address>\n    <device_ip_address>198.19.11.10</device_ip_address>\n    <identity_group>Profiled</identity_group>\n    <network_device_name>WLC</network_device_name>\n    <acs_server>ise</acs_server>\n    <authentication_method>dot1x</authentication_method>\n    <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n    <framed_ip_address>198.19.2.11</framed_ip_address>\n    <auth_acs_timestamp>2021-05-09T20:30:32.674Z</auth_acs_timestamp>\n    <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n    <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/6; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n    <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n    <posture_status></posture_status>\n    <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n    <service_type>Framed</service_type>\n    <message_code>5200</message_code>\n    <auth_acsview_timestamp>2021-05-09T20:30:32.674Z</auth_acsview_timestamp>\n    <auth_id>1620243689019468</auth_id>\n    <identity_store>Internal Users</identity_store>\n    <location>All Locations</location>\n    <device_type>All Device Types</device_type>\n    <response_time>42</response_time>\n    <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;25SessionID=ise/409618222/6;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/6:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n    <acct_id>1620243689019409</acct_id>\n    <acct_acs_timestamp>2021-05-09T20:00:35.462Z</acct_acs_timestamp>\n    <acct_acsview_timestamp>2021-05-09T20:00:35.462Z</acct_acsview_timestamp>\n    <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n    <acct_status_type>Start</acct_status_type>\n    <acct_input_octets>4533525</acct_input_octets>\n    <acct_output_octets>143004377</acct_output_octets>\n    <acct_input_packets>62024</acct_input_packets>\n    <acct_output_packets>101510</acct_output_packets>\n    <acct_authentic>RADIUS</acct_authentic>\n    <event_timestamp>1620590435</event_timestamp>\n    <started xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</started>\n    <stopped xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</stopped>\n    <endpoint_policy>Apple-iPhone</endpoint_policy>\n</sessionParameters>"
+				}
+			]
 		},
 		{
-			"name": "Sessions by NAS IP",
+			"name": "Session by NAS IP",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -710,21 +1246,116 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/IPAddress/{{nas_ipv4}}",
+					"raw": "{{base_url}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"IPAddress",
-						"{{nas_ipv4}}"
+						"{{nas_ip}}"
 					]
-				}
+				},
+				"description": "## Session by IPAddress\nSearches the database for the latest session that contains the specified NAS IP address (IPv4 or IPv6 address).\n\n`https://<ISE>/admin/API/mnt/Session/IPAddress/<nasipaddress>`"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "198.19.11.10",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"IPAddress",
+								"{{nas_ip}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:53:31 GMT"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionParameters>\n    <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n    <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n    <user_name>1homas</user_name>\n    <nas_ip_address>198.19.11.10</nas_ip_address>\n    <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n    <orig_calling_station_id>98-10-e8-14-7a-67</orig_calling_station_id>\n    <cpmsession_id>0a0b13c600000000523f9860</cpmsession_id>\n    <destination_ip_address>198.18.133.27</destination_ip_address>\n    <device_ip_address>198.19.11.10</device_ip_address>\n    <identity_group>Profiled</identity_group>\n    <network_device_name>WLC</network_device_name>\n    <acs_server>ise</acs_server>\n    <authentication_method>dot1x</authentication_method>\n    <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n    <framed_ip_address>198.19.2.11</framed_ip_address>\n    <auth_acs_timestamp>2021-05-09T20:30:32.674Z</auth_acs_timestamp>\n    <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n    <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/6; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n    <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n    <posture_status></posture_status>\n    <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n    <service_type>Framed</service_type>\n    <message_code>5200</message_code>\n    <auth_acsview_timestamp>2021-05-09T20:30:32.674Z</auth_acsview_timestamp>\n    <auth_id>1620243689019468</auth_id>\n    <identity_store>Internal Users</identity_store>\n    <location>All Locations</location>\n    <device_type>All Device Types</device_type>\n    <response_time>42</response_time>\n    <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;25SessionID=ise/409618222/6;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/6:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n    <acct_id>1620243689019409</acct_id>\n    <acct_acs_timestamp>2021-05-09T20:00:35.462Z</acct_acs_timestamp>\n    <acct_acsview_timestamp>2021-05-09T20:00:35.462Z</acct_acsview_timestamp>\n    <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n    <acct_status_type>Start</acct_status_type>\n    <acct_input_octets>4533525</acct_input_octets>\n    <acct_output_octets>143004377</acct_output_octets>\n    <acct_input_packets>62024</acct_input_packets>\n    <acct_output_packets>101510</acct_output_packets>\n    <acct_authentic>RADIUS</acct_authentic>\n    <event_timestamp>1620590435</event_timestamp>\n    <started xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</started>\n    <stopped xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</stopped>\n    <endpoint_policy>Apple-iPhone</endpoint_policy>\n</sessionParameters>"
+				}
+			]
 		},
 		{
-			"name": "Sessions by Endpoint IP",
+			"name": "Session by Endpoint IP",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -735,21 +1366,116 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/EndPointIPAddress/{{endpoint_ipv4}}",
+					"raw": "{{base_url}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"EndPointIPAddress",
-						"{{endpoint_ipv4}}"
+						"{{endpoint_ip}}"
 					]
-				}
+				},
+				"description": "## Session by Endpoint IP\nRetrieve session directory information of the active session with the specified endpoint IP address.\n\n`https://<ISE>/admin/API/mnt/Session/EndPointIPAddress/<endpoint_ip>`"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "198.19.2.11",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"EndPointIPAddress",
+								"{{endpoint_ip}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:54:51 GMT"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<sessionParameters>\n    <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n    <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n    <user_name>1homas</user_name>\n    <nas_ip_address>198.19.11.10</nas_ip_address>\n    <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n    <orig_calling_station_id>98-10-e8-14-7a-67</orig_calling_station_id>\n    <cpmsession_id>0a0b13c600000000523f9860</cpmsession_id>\n    <destination_ip_address>198.18.133.27</destination_ip_address>\n    <device_ip_address>198.19.11.10</device_ip_address>\n    <identity_group>Profiled</identity_group>\n    <network_device_name>WLC</network_device_name>\n    <acs_server>ise</acs_server>\n    <authentication_method>dot1x</authentication_method>\n    <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n    <framed_ip_address>198.19.2.11</framed_ip_address>\n    <auth_acs_timestamp>2021-05-09T20:30:32.674Z</auth_acs_timestamp>\n    <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n    <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/6; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n    <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n    <posture_status></posture_status>\n    <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n    <service_type>Framed</service_type>\n    <message_code>5200</message_code>\n    <auth_acsview_timestamp>2021-05-09T20:30:32.674Z</auth_acsview_timestamp>\n    <auth_id>1620243689019468</auth_id>\n    <identity_store>Internal Users</identity_store>\n    <location>All Locations</location>\n    <device_type>All Device Types</device_type>\n    <response_time>42</response_time>\n    <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;25SessionID=ise/409618222/6;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/6:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n    <acct_id>1620243689019409</acct_id>\n    <acct_acs_timestamp>2021-05-09T20:00:35.462Z</acct_acs_timestamp>\n    <acct_acsview_timestamp>2021-05-09T20:00:35.462Z</acct_acsview_timestamp>\n    <acct_session_id>60983f51/98:10:e8:14:7a:67/2</acct_session_id>\n    <acct_status_type>Start</acct_status_type>\n    <acct_input_octets>4533525</acct_input_octets>\n    <acct_output_octets>143004377</acct_output_octets>\n    <acct_input_packets>62024</acct_input_packets>\n    <acct_output_packets>101510</acct_output_packets>\n    <acct_authentic>RADIUS</acct_authentic>\n    <event_timestamp>1620590435</event_timestamp>\n    <started xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</started>\n    <stopped xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</stopped>\n    <endpoint_policy>Apple-iPhone</endpoint_policy>\n</sessionParameters>"
+				}
+			]
 		},
 		{
-			"name": "Sessions by SessionID",
+			"name": "Session by SessionID",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -760,20 +1486,109 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/Active/SessionID/{{session_id}}/0",
+					"raw": "{{base_url}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"Active",
 						"SessionID",
 						"{{session_id}}",
 						"0"
 					]
-				}
+				},
+				"description": "## Session by Session ID\nSearches the database for the latest session that contains the specified audit session ID. Use the ActiveList API call to list all active sessions and their audit session IDs.\n\n`https://<ISE>/admin/API/mnt/Session/Active/SessionID/<audit-session-id>/0`"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "0a0b13c600000000523f9860",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"Active",
+								"SessionID",
+								"{{session_id}}",
+								"0"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "691"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:55:40 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<activeSessionList noOfActiveSession=\"1\">\n    <activeSession>\n        <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n        <orig_calling_station_id>98-10-e8-14-7a-67</orig_calling_station_id>\n        <session_state_bit>0</session_state_bit>\n        <session_source>0</session_source>\n        <acct_session_time>0</acct_session_time>\n        <nas_ip_address>198.19.11.10</nas_ip_address>\n        <framed_ipv6_address/>\n        <auth_method>dot1x</auth_method>\n        <auth_protocol>PEAP (EAP-MSCHAPv2)</auth_protocol>\n        <endpoint_policy>Apple-iPhone</endpoint_policy>\n        <server>ise</server>\n        <paks_in>0</paks_in>\n        <paks_out>0</paks_out>\n        <bytes_in>0</bytes_in>\n        <bytes_out>0</bytes_out>\n    </activeSession>\n</activeSessionList>"
+				}
+			]
 		},
 		{
 			"name": "Delete All Sessions",
@@ -787,21 +1602,107 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Session/Delete/All",
+					"raw": "{{base_url}}/admin/API/mnt/Session/Delete/All",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Session",
 						"Delete",
 						"All"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "SUCCESSFUL",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/Session/Delete/All",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"Session",
+								"Delete",
+								"All"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "442"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 21:58:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mnt-rest-result>\n    <http-code>200</http-code>\n    <cpm-code>52092</cpm-code>\n    <description>The software update was completed successfully</description>\n    <module-name>MnT</module-name>\n    <internal-error-info></internal-error-info>\n    <requested-operation>Not Available</requested-operation>\n    <resource-id>1</resource-id>\n    <resource-name>MNT_RAD_SESS</resource-name>\n    <status>SUCCESSFUL</status>\n</mnt-rest-result>"
+				}
+			]
 		},
 		{
-			"name": "MNT Version",
+			"name": "MNT Node Version & Type",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -812,18 +1713,22 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/Version",
+					"raw": "{{base_url}}/admin/API/mnt/Version",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"Version"
 					]
-				}
+				},
+				"description": "Node Type:\n- `0` : STAND_ALONE_MNT_NODE means it is a Monitoring node that does not function in any distributed deployment.\n- `1` : ACTIVE_MNT_NODE means it is a primary node in a primary-secondary relationship in a distributed deployment.\n- `2` : STAND_BY_MNT_NODE means it is a secondary node in a primary-secondary pair in a distributed deployment.\n- `3` : NOT_AN_MNT_NODE means it is not a Monitoring node. See Cisco Identity Services Engine User Guide, Release 1.1 for details about the supported ISE nodes and personas."
 			},
 			"response": [
 				{
-					"name": "3.0.0.458",
+					"name": "3.0.0.458 / Standalone",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -834,11 +1739,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/Version",
+							"raw": "{{base_url}}/admin/API/mnt/Version",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"admin",
+								"API",
+								"mnt",
 								"Version"
 							]
 						}
@@ -921,11 +1829,14 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/FailureReasons",
+					"raw": "{{base_url}}/admin/API/mnt/FailureReasons",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"FailureReasons"
 					]
 				}
@@ -933,7 +1844,7 @@
 			"response": []
 		},
 		{
-			"name": "AuthenticationStatus by MAC",
+			"name": "AuthStatus by MAC",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -944,24 +1855,206 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/AuthStatus/MACAddress/{{MAC}}/{{SECONDS}}/{{RECORDS}}/All",
+					"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"AuthStatus",
 						"MACAddress",
-						"{{MAC}}",
-						"{{SECONDS}}",
-						"{{RECORDS}}",
+						"{{mac}}",
+						"{{seconds}}",
+						"{{records}}",
 						"All"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "FE:ED:FA:CE:CA:FE (no results)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"AuthStatus",
+								"MACAddress",
+								"{{mac}}",
+								"{{seconds}}",
+								"{{records}}",
+								"All"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "141"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 22:32:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<authStatusOutputList>\n    <authStatusList key=\"FE:ED:FA:CE:CA:FE\"/>\n</authStatusOutputList>"
+				},
+				{
+					"name": "98:10:E8:14:7A:67",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"AuthStatus",
+								"MACAddress",
+								"{{mac}}",
+								"{{seconds}}",
+								"{{records}}",
+								"All"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 23:37:25 GMT"
+						},
+						{
+							"key": "vary",
+							"value": "accept-encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<authStatusOutputList>\n    <authStatusList key=\"98:10:E8:14:7A:67\">\n        <authStatusElements>\n            <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n            <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n            <user_name>1homas</user_name>\n            <nas_ip_address>198.19.11.10</nas_ip_address>\n            <nas_port_type>Wireless - IEEE 802.11</nas_port_type>\n            <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n            <identity_group>Profiled</identity_group>\n            <network_device_name>WLC</network_device_name>\n            <acs_server>ise</acs_server>\n            <authentication_method>dot1x</authentication_method>\n            <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n            <acs_timestamp>2021-05-09T22:38:26.256Z</acs_timestamp>\n            <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n            <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/23; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n            <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n            <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n            <service_type>Framed</service_type>\n            <message_code>5200</message_code>\n            <id>1620243689019801</id>\n            <acsview_timestamp>2021-05-09T22:38:26.256Z</acsview_timestamp>\n            <identity_store>Internal Users</identity_store>\n            <response_time>12</response_time>\n            <location>All Locations</location>\n            <device_type>All Device Types</device_type>\n            <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;26SessionID=ise/409618222/23;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/23:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:StepLatency=29=30202:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n        </authStatusElements>\n        <authStatusElements>\n            <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n            <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n            <user_name>1homas</user_name>\n            <nas_ip_address>198.19.11.10</nas_ip_address>\n            <nas_port_type>Wireless - IEEE 802.11</nas_port_type>\n            <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n            <identity_group>Profiled</identity_group>\n            <network_device_name>WLC</network_device_name>\n            <acs_server>ise</acs_server>\n            <authentication_method>dot1x</authentication_method>\n            <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n            <acs_timestamp>2021-05-09T22:07:41.344Z</acs_timestamp>\n            <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n            <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/21; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n            <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n            <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n            <service_type>Framed</service_type>\n            <message_code>5200</message_code>\n            <id>1620243689019713</id>\n            <acsview_timestamp>2021-05-09T22:07:41.344Z</acsview_timestamp>\n            <identity_store>Internal Users</identity_store>\n            <response_time>21</response_time>\n            <location>All Locations</location>\n            <device_type>All Device Types</device_type>\n            <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;26SessionID=ise/409618222/21;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/21:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n        </authStatusElements>\n        <authStatusElements>\n            <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n            <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n            <user_name>1homas</user_name>\n            <nas_ip_address>198.19.11.10</nas_ip_address>\n            <nas_port_type>Wireless - IEEE 802.11</nas_port_type>\n            <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n            <identity_group>Profiled</identity_group>\n            <network_device_name>WLC</network_device_name>\n            <acs_server>ise</acs_server>\n            <authentication_method>dot1x</authentication_method>\n            <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n            <acs_timestamp>2021-05-09T22:04:41.521Z</acs_timestamp>\n            <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n            <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/19; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n            <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n            <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n            <service_type>Framed</service_type>\n            <message_code>5200</message_code>\n            <id>1620243689019694</id>\n            <acsview_timestamp>2021-05-09T22:04:41.521Z</acsview_timestamp>\n            <identity_store>Internal Users</identity_store>\n            <response_time>11</response_time>\n            <location>All Locations</location>\n            <device_type>All Device Types</device_type>\n            <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;26SessionID=ise/409618222/19;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/19:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n        </authStatusElements>\n        <authStatusElements>\n            <passed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">true</passed>\n            <failed xsi:type=\"xs:boolean\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">false</failed>\n            <user_name>1homas</user_name>\n            <nas_ip_address>198.19.11.10</nas_ip_address>\n            <nas_port_type>Wireless - IEEE 802.11</nas_port_type>\n            <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n            <identity_group>Profiled</identity_group>\n            <network_device_name>WLC</network_device_name>\n            <acs_server>ise</acs_server>\n            <authentication_method>dot1x</authentication_method>\n            <authentication_protocol>PEAP (EAP-MSCHAPv2)</authentication_protocol>\n            <acs_timestamp>2021-05-09T22:00:46.194Z</acs_timestamp>\n            <execution_steps>11001,11017,15049,15008,11507,12500,11006,11001,11018,12301,12300,11006,11001,11018,12302,12319,12800,12805,12806,12807,12808,12810,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12305,11006,11001,11018,12304,12319,12810,12812,12803,12804,12801,12802,12816,12310,12305,11006,11001,11018,12304,12313,11521,12305,11006,11001,11018,12304,11522,11806,12305,11006,11001,11018,12304,11808,15041,22072,15013,24210,24212,22037,11824,12305,11006,11001,11018,12304,11810,11814,11519,12314,12305,11006,11001,11018,12304,24715,15036,24209,24211,15048,15048,15048,15016,22081,22080,12306,11503,11002</execution_steps>\n            <response>{Class=CACS:0a0b13c600000000523f9860:ise/409618222/17; cisco-av-pair=AuthenticationIdentityStore=Internal Users; cisco-av-pair=FQSubjectName=9273fe30-8c01-11e6-996c-525400b48521#1homas; cisco-av-pair=UniqueSubjectID=ebd8dee1a668b43147ee3eb8173f43ab1704b7d6; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; }</response>\n            <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n            <selected_azn_profiles>PermitAccess</selected_azn_profiles>\n            <service_type>Framed</service_type>\n            <message_code>5200</message_code>\n            <id>1620243689019676</id>\n            <acsview_timestamp>2021-05-09T22:00:46.194Z</acsview_timestamp>\n            <identity_store>Internal Users</identity_store>\n            <response_time>11</response_time>\n            <location>All Locations</location>\n            <device_type>All Device Types</device_type>\n            <other_attr_string>:!:ConfigVersionId=85:!:DestinationPort=1812:!:Protocol=Radius:!:NAS-Port=1:!:Framed-MTU=1300:!:State=37CPMSessionID=0a0b13c600000000523f9860;26SessionID=ise/409618222/17;:!:Acct-Session-Id=60983f51/98:10:e8:14:7a:67/2:!:Tunnel-Type=(tag=0) VLAN:!:Tunnel-Medium-Type=(tag=0) 802:!:Chargeable-User-Identity=:!:Location-Capable=00:00:00:01:!:NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c:!:IsThirdPartyDeviceFlow=false:!:AcsSessionID=ise/409618222/17:!:SelectedAuthenticationIdentityStores=Internal Users:!:SelectedAuthenticationIdentityStores=All_AD_Join_Points:!:SelectedAuthenticationIdentityStores=Guest Users:!:AuthenticationStatus=AuthenticationPassed:!:IdentityPolicyMatchedRule=Dot1X:!:AuthorizationPolicyMatchedRule=Basic_Authenticated_Access:!:EndPointMACAddress=98-10-E8-14-7A-67:!:ISEPolicySetName=Default:!:IdentitySelectionMatchedRule=Dot1X:!:TLSCipher=ECDHE-RSA-AES256-GCM-SHA384:!:TLSVersion=TLSv1.2:!:DTLSSupport=Unknown:!:HostIdentityGroup=Endpoint Identity Groups:Profiled:!:Network Device Profile=Cisco:!:Location=Location#All Locations:!:Device Type=Device Type#All Device Types:!:IPSEC=IPSEC#Is IPSEC Device#No:!:Department=Department#Department:!:Operation=Operation#Operation:!:Name=Endpoint Identity Groups:Profiled:!:EnableFlag=Enabled:!:Regions=Regions#Regions:!:StepData=\"67=All_User_ID_Stores\",\"68=Internal Users\",\"91= Network Access.UseCase\",\"92= Radius.NAS-Port-Type\",\"93= Network Access.AuthenticationStatus\"=StepData:!:RADIUS Username=1homas:!:NAS-Identifier=WLC1:!:Device IP Address=198.19.11.10:!:CPMSessionID=0a0b13c600000000523f9860:!:Called-Station-ID=70-0f-6a-77-10-c0:thomas-secure:!:CiscoAVPair=audit-session-id=0a0b13c600000000523f9860,mDNS=true:!:AD-Groups-Names=</other_attr_string>\n        </authStatusElements>\n    </authStatusList>\n</authStatusOutputList>"
+				}
+			]
 		},
 		{
-			"name": "Session Reauthentication by MAC",
+			"name": "CoA Reauth by MAC",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -972,23 +2065,196 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/CoA/Reauth/{{PSN_NAME}}/{{ENDPOINT_MAC}}/{{REAUTH_TYPE}}",
+					"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"CoA",
 						"Reauth",
-						"{{PSN_NAME}}",
-						"{{ENDPOINT_MAC}}",
-						"{{REAUTH_TYPE}}"
+						"{{psn_name}}",
+						"{{mac}}",
+						"{{reauth_type}}"
 					]
-				}
+				},
+				"description": "Reauth Type:\n- 0 : REAUTH_TYPE_DEFAULT\n- 1 : REAUTH_TYPE_LAST\n- 2 : REAUTH_TYPE_RERUN"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "false",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"CoA",
+								"Reauth",
+								"{{psn_name}}",
+								"{{mac}}",
+								"{{reauth_type}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "123"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 23:38:17 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<remoteCoA requestType=\"reauth\">\n    <results>false</results>\n</remoteCoA>"
+				},
+				{
+					"name": "CLIENT_ERROR (not found)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"CoA",
+								"Reauth",
+								"{{psn_name}}",
+								"{{mac}}",
+								"{{reauth_type}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "605"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 May 2021 00:05:23 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mnt-rest-result>\n    <http-code>400</http-code>\n    <cpm-code>34110</cpm-code>\n    <description>Server has encountered error while processing the REST request</description>\n    <module-name>MnT</module-name>\n    <internal-error-info>No NAS_IP_ADDRESS associated with the calling station id 98:10:E8:14:7A:67. This CoA request can not be delivered.</internal-error-info>\n    <requested-operation>Get By Type</requested-operation>\n    <resource-id>N/A</resource-id>\n    <resource-name>N/A</resource-name>\n    <resource-type>CoAResult</resource-type>\n    <status>CLIENT_ERROR</status>\n</mnt-rest-result>"
+				}
+			]
 		},
 		{
-			"name": "Session Disconnect",
+			"name": "CoA Disconnect",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -999,22 +2265,313 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/CoA/Disconnect>/{{PSN_NAME}}/{{MAC}}/{{DISCONNECT_TYPE}}/{{NAS_IPV4}}/{{ENDPOINT_IP??}}",
+					"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"CoA",
-						"Disconnect>",
-						"{{PSN_NAME}}",
-						"{{MAC}}",
-						"{{DISCONNECT_TYPE}}",
-						"{{NAS_IPV4}}",
-						"{{ENDPOINT_IP??}}"
+						"Disconnect",
+						"{{psn_name}}",
+						"{{mac}}",
+						"{{disconnect_type}}",
+						"{{nas_ip}}",
+						"{{endpoint_ip}}"
 					]
-				}
+				},
+				"description": "## Session Disconnect\nSends a session disconnect command and port option type. You must know the endpoint MAC address to perform this API call but you can leave other parameters as `null`.\n\n`https://<ise>/admin/API/mnt/CoA/Disconnect/<serverhostname>/<macaddress>/<disconnecttype>/<nasipaddress>/<destinationipaddress>`\n\nPort Disconnect Type:\n- `0` : DYNAMIC_AUTHZ_PORT_DEFAULT\n- `1` : DYNAMIC_AUTHZ_PORT_BOUNCE\n- `2` : DYNAMIC_AUTHZ_PORT_SHUTDOWN"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "false",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"CoA",
+								"Disconnect",
+								"{{psn_name}}",
+								"{{mac}}",
+								"{{disconnect_type}}",
+								"{{nas_ip}}",
+								"{{endpoint_ip}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 23:50:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<remoteCoA requestType=\"disconnect\">\n    <results>false</results>\n</remoteCoA>"
+				}
+			]
+		},
+		{
+			"name": "CoA Disconnect (minimum)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"admin",
+						"API",
+						"mnt",
+						"CoA",
+						"Disconnect",
+						"{{psn_name}}",
+						"{{mac}}",
+						"{{disconnect_type}}"
+					]
+				},
+				"description": "## Session Disconnect\nSends a session disconnect command and port option type. You must know the endpoint MAC address to perform this API call but you can leave other parameters as `null`.\n\n`https://<ise>/admin/API/mnt/CoA/Disconnect/<serverhostname>/<macaddress>/<disconnecttype>/<nasipaddress>/<destinationipaddress>`\n\nPort Disconnect Type:\n- `0` : DYNAMIC_AUTHZ_PORT_DEFAULT\n- `1` : DYNAMIC_AUTHZ_PORT_BOUNCE\n- `2` : DYNAMIC_AUTHZ_PORT_SHUTDOWN"
+			},
+			"response": [
+				{
+					"name": "false",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"CoA",
+								"Disconnect",
+								"ise",
+								"98:10:E8:14:7A:67",
+								"0"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 23:49:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<remoteCoA requestType=\"disconnect\">\n    <results>false</results>\n</remoteCoA>"
+				},
+				{
+					"name": "CLIENT_ERROR (not found)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"CoA",
+								"Disconnect",
+								"ise",
+								"98:10:E8:14:7A:67",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "605"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 May 2021 00:06:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<mnt-rest-result>\n    <http-code>400</http-code>\n    <cpm-code>34110</cpm-code>\n    <description>Server has encountered error while processing the REST request</description>\n    <module-name>MnT</module-name>\n    <internal-error-info>No NAS_IP_ADDRESS associated with the calling station id 98:10:E8:14:7A:67. This CoA request can not be delivered.</internal-error-info>\n    <requested-operation>Get By Type</requested-operation>\n    <resource-id>N/A</resource-id>\n    <resource-name>N/A</resource-name>\n    <resource-type>CoAResult</resource-type>\n    <status>CLIENT_ERROR</status>\n</mnt-rest-result>"
+				}
+			]
 		},
 		{
 			"name": "AccountStatus by MAC",
@@ -1028,19 +2585,107 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/AcctStatus/MACAddress/{{mac}}/{{duration}}",
+					"raw": "{{base_url}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
+						"admin",
+						"API",
+						"mnt",
 						"AcctStatus",
 						"MACAddress",
 						"{{mac}}",
-						"{{duration}}"
+						"{{seconds}}"
 					]
-				}
+				},
+				"description": "## AcctStatus\nLists the accounting status of all sessions within a specific period of time.\n\n`https://<ISEhost>/admin/API/mnt/AcctStatusTT/MACAddress/<macaddress>/<numberofseconds>`\n\n- numberofseconds` : the valid range is 0 - 432000 seconds (5 days)"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "98:10:E8:14:7A:67",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"API",
+								"mnt",
+								"AcctStatus",
+								"MACAddress",
+								"{{mac}}",
+								"{{seconds}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/xml;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "489"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "frame-ancestors 'self'; font-src 'self' data:; default-src 'self' *.walkme.com *.walkmeusercontent.com; script-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' *.walkme.com *.walkmeusercontent.com 'unsafe-inline'; img-src 'self' *.walkme.com *.walkmeusercontent.com data:;"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 09 May 2021 23:41:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<acctStatusOutputList>\n    <acctStatusList macAddress=\"98:10:E8:14:7A:67\">\n        <acctStatusElements>\n            <calling_station_id>98:10:E8:14:7A:67</calling_station_id>\n            <audit_session_id>0a0b13c600000000523f9860</audit_session_id>\n            <paks_in>99400</paks_in>\n            <paks_out>117632</paks_out>\n            <bytes_in>6869526</bytes_in>\n            <bytes_out>161193340</bytes_out>\n            <session_time>13134</session_time>\n            <server>ise</server>\n        </acctStatusElements>\n    </acctStatusList>\n</acctStatusOutputList>"
+				}
+			]
 		}
 	],
 	"auth": {
@@ -1085,7 +2730,7 @@
 		},
 		{
 			"key": "base_url",
-			"value": "https://{{ise_mnt}}/admin/API/mnt"
+			"value": "https://{{ise_mnt}}"
 		},
 		{
 			"key": "rest_username",
@@ -1094,6 +2739,54 @@
 		{
 			"key": "rest_password",
 			"value": "C1sco12345"
+		},
+		{
+			"key": "mac",
+			"value": "00:00:00:00:00:00"
+		},
+		{
+			"key": "start_time",
+			"value": "null"
+		},
+		{
+			"key": "end_time",
+			"value": "null"
+		},
+		{
+			"key": "seconds",
+			"value": "60"
+		},
+		{
+			"key": "session_id",
+			"value": "000000000000000000000000"
+		},
+		{
+			"key": "username",
+			"value": "1homas"
+		},
+		{
+			"key": "records",
+			"value": "10"
+		},
+		{
+			"key": "psn_name",
+			"value": "ise"
+		},
+		{
+			"key": "nas_ip",
+			"value": "null"
+		},
+		{
+			"key": "endpoint_ip",
+			"value": "null"
+		},
+		{
+			"key": "reauth_type",
+			"value": "0"
+		},
+		{
+			"key": "disconnect_type",
+			"value": "0"
 		}
 	]
 }
