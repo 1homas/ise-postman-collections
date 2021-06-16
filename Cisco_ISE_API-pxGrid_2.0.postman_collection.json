@@ -1,24 +1,26 @@
 {
 	"info": {
-		"_postman_id": "d4a5c4c7-85aa-45d9-902a-45da3aaa21a9",
-		"name": "Cisco_ISE_pxGrid_2.0_APIs",
-		"description": "# Cisco ISE 3.0 pxGrid REST APIs\n\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pxg`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
+		"_postman_id": "dbf72b6c-5af1-4ffa-9168-e0986d39dc27",
+		"name": "Cisco ISE API - pxGrid 2.0",
+		"description": "# Cisco ISE API - pxGrid 2.0\n\nCreated from the official Cisco pxGrid 2.0 API documentation at <https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki>\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pxg`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Session Directory",
+			"name": "Consumer",
 			"item": [
 				{
-					"name": "🚧 getSessions",
+					"name": "🚧 AccountActivate",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Body:",
-									"// { \"startTimestamp\": ISO8601 Datetime (optional) }",
-									""
+									"// Request sample",
+									"",
+									"// {",
+									"//     \"description\":\"MyApp 1.0\"",
+									"// }"
 								],
 								"type": "text/javascript"
 							}
@@ -27,82 +29,67 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Response:",
-									"// {",
-									"//   \"sessions\": [ ",
-									"//     array of session objects",
-									"//   ]",
-									"// }",
+									"// Response sample",
 									"",
-									"// \"session\" object",
 									"// {",
-									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
-									"//   \"state\": \"STARTED\",",
-									"//   \"userName\": \"user1\",",
-									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
-									"//   \"auditSessionId\": \"101\",",
-									"//   \"ipAddresses\": [\"1.2.3.4\"],",
-									"//   \"macAddress\": \"33:33:33:33:33:33\",",
-									"//   \"nasIpAddress\": \"172.21.170.242\",",
-									"//   \"adNormalizedUser\": \"user1\",",
-									"//   \"providers\": [\"None\"],",
-									"//   \"endpointCheckResult\": \"none\",",
-									"//   \"identitySourcePortStart\": 0,",
-									"//   \"identitySourcePortEnd\": 0,",
-									"//   \"identitySourcePortFirst\": 0,",
-									"//   \"networkDeviceProfileName\": \"Cisco\",",
-									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
-									"//   \"mdmOsVersion\": \"9.3.5\",",
-									"//   \"mdmRegistered\": true,",
-									"//   \"mdmCompliant\": true,",
-									"//   \"mdmDiskEncrypted\": false,",
-									"//   \"mdmJailBroken\": false,",
-									"//   \"mdmPinLocked\": true,",
-									"//   \"mdmModel\": \"iPad mini\",",
-									"//   \"mdmManufacturer\": \"Apple\",",
-									"//   \"mdmImei\": \"dummy15\",",
-									"//   \"mdmMeid\": \"dummy16\",",
-									"//   \"mdmUdid\": \"dummy17\",",
-									"//   \"mdmSerialNumber\": \"dummy18\",",
-									"//   \"mdmDeviceManager\": \"sns\"",
+									"//     \"accountState\":\"PENDING\",",
+									"//     \"version\":\"2.0.0.2\"",
 									"// }"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{ \"description\":\"MyApp 1.0\" }\n"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/session/getSessions",
+							"raw": "{{baseUrl}}/pxgrid/control/AccountActivate",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"ise",
-								"session",
-								"getSessions"
+								"pxgrid",
+								"control",
+								"AccountActivate"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "🚧 getSessionsForRecovery",
+					"name": "🚧 AccountCreate",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Body:",
+									"// Request sample",
 									"// {",
-									"//   \"startTimestamp\": ISO8601 Datetime,",
-									"//   \"endTimestamp\": ISO8601 Datetime",
+									"//     \"nodeName\":\"MyName01\"",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -112,44 +99,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Response:",
+									"// Response sample",
 									"// {",
-									"//   \"sessions\": [ ",
-									"//     array of session objects",
-									"//   ]",
-									"// }",
-									"",
-									"// \"session\" object",
-									"// {",
-									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
-									"//   \"state\": \"STARTED\",",
-									"//   \"userName\": \"user1\",",
-									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
-									"//   \"auditSessionId\": \"101\",",
-									"//   \"ipAddresses\": [\"1.2.3.4\"],",
-									"//   \"macAddress\": \"33:33:33:33:33:33\",",
-									"//   \"nasIpAddress\": \"172.21.170.242\",",
-									"//   \"adNormalizedUser\": \"user1\",",
-									"//   \"providers\": [\"None\"],",
-									"//   \"endpointCheckResult\": \"none\",",
-									"//   \"identitySourcePortStart\": 0,",
-									"//   \"identitySourcePortEnd\": 0,",
-									"//   \"identitySourcePortFirst\": 0,",
-									"//   \"networkDeviceProfileName\": \"Cisco\",",
-									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
-									"//   \"mdmOsVersion\": \"9.3.5\",",
-									"//   \"mdmRegistered\": true,",
-									"//   \"mdmCompliant\": true,",
-									"//   \"mdmDiskEncrypted\": false,",
-									"//   \"mdmJailBroken\": false,",
-									"//   \"mdmPinLocked\": true,",
-									"//   \"mdmModel\": \"iPad mini\",",
-									"//   \"mdmManufacturer\": \"Apple\",",
-									"//   \"mdmImei\": \"dummy15\",",
-									"//   \"mdmMeid\": \"dummy16\",",
-									"//   \"mdmUdid\": \"dummy17\",",
-									"//   \"mdmSerialNumber\": \"dummy18\",",
-									"//   \"mdmDeviceManager\": \"sns\"",
+									"//     \"nodeName\":\"MyName01\",",
+									"//     \"password\":\"P9nEaNX0cyA4DRBr\"",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -158,36 +111,49 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{ \"nodeName\":\"MyName01\" }\n"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/session/getSessionsForRecovery",
+							"raw": "{{baseUrl}}/pxgrid/control/AccountCreate",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"ise",
-								"session",
-								"getSessionsForRecovery"
+								"pxgrid",
+								"control",
+								"AccountCreate"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "🚧 getSessionByIpAddress",
+					"name": "🚧 ServiceLookup",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Body:",
+									"// Request sample",
+									"",
 									"// {",
-									"//   \"startTimestamp\": ISO8601 Datetime,",
-									"//   \"endTimestamp\": ISO8601 Datetime",
+									"//     \"name\":\"com.cisco.ise.pubsub\"",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -197,42 +163,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Response:",
-									"// {",
-									"//   session object",
-									"// }",
+									"// Response sample",
 									"",
-									"// \"session\" object",
 									"// {",
-									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
-									"//   \"state\": \"STARTED\",",
-									"//   \"userName\": \"user1\",",
-									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
-									"//   \"auditSessionId\": \"101\",",
-									"//   \"ipAddresses\": [\"1.2.3.4\"],",
-									"//   \"macAddress\": \"33:33:33:33:33:33\",",
-									"//   \"nasIpAddress\": \"172.21.170.242\",",
-									"//   \"adNormalizedUser\": \"user1\",",
-									"//   \"providers\": [\"None\"],",
-									"//   \"endpointCheckResult\": \"none\",",
-									"//   \"identitySourcePortStart\": 0,",
-									"//   \"identitySourcePortEnd\": 0,",
-									"//   \"identitySourcePortFirst\": 0,",
-									"//   \"networkDeviceProfileName\": \"Cisco\",",
-									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
-									"//   \"mdmOsVersion\": \"9.3.5\",",
-									"//   \"mdmRegistered\": true,",
-									"//   \"mdmCompliant\": true,",
-									"//   \"mdmDiskEncrypted\": false,",
-									"//   \"mdmJailBroken\": false,",
-									"//   \"mdmPinLocked\": true,",
-									"//   \"mdmModel\": \"iPad mini\",",
-									"//   \"mdmManufacturer\": \"Apple\",",
-									"//   \"mdmImei\": \"dummy15\",",
-									"//   \"mdmMeid\": \"dummy16\",",
-									"//   \"mdmUdid\": \"dummy17\",",
-									"//   \"mdmSerialNumber\": \"dummy18\",",
-									"//   \"mdmDeviceManager\": \"sns\"",
+									"//     \"services\":[",
+									"//         {",
+									"//             \"name\":\"com.cisco.ise.pubsub\",",
+									"//             \"nodeName\":\"ise-admin-pxgrid-002\",",
+									"//             \"properties\":",
+									"//             {",
+									"//                 \"wsUrl\":\"wss://pxgrid-002.cisco.com:8910/pxgrid/ise/pubsub\"",
+									"//             }",
+									"//         }",
+									"//     ]",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -241,35 +184,48 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{ \"name\":\"com.cisco.ise.pubsub\" }\n"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/session/getSessionByIpAddress",
+							"raw": "{{baseUrl}}/pxgrid/control/ServiceLookup",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"ise",
-								"session",
-								"getSessionByIpAddress"
+								"pxgrid",
+								"control",
+								"ServiceLookup"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "🚧 getSessionByMacAddress",
+					"name": "🚧 AccessSecret",
 					"event": [
 						{
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// Body:",
+									"// Request sample",
 									"// {",
-									"//   \"macAddress\": string (required)",
+									"//     \"peerNodeName\":\"ise-admin-pxgrid-002\"",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -279,42 +235,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Response:",
+									"// Response sample",
 									"// {",
-									"//   session object",
-									"// }",
-									"",
-									"// \"session\" object",
-									"// {",
-									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
-									"//   \"state\": \"STARTED\",",
-									"//   \"userName\": \"user1\",",
-									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
-									"//   \"auditSessionId\": \"101\",",
-									"//   \"ipAddresses\": [\"1.2.3.4\"],",
-									"//   \"macAddress\": \"33:33:33:33:33:33\",",
-									"//   \"nasIpAddress\": \"172.21.170.242\",",
-									"//   \"adNormalizedUser\": \"user1\",",
-									"//   \"providers\": [\"None\"],",
-									"//   \"endpointCheckResult\": \"none\",",
-									"//   \"identitySourcePortStart\": 0,",
-									"//   \"identitySourcePortEnd\": 0,",
-									"//   \"identitySourcePortFirst\": 0,",
-									"//   \"networkDeviceProfileName\": \"Cisco\",",
-									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
-									"//   \"mdmOsVersion\": \"9.3.5\",",
-									"//   \"mdmRegistered\": true,",
-									"//   \"mdmCompliant\": true,",
-									"//   \"mdmDiskEncrypted\": false,",
-									"//   \"mdmJailBroken\": false,",
-									"//   \"mdmPinLocked\": true,",
-									"//   \"mdmModel\": \"iPad mini\",",
-									"//   \"mdmManufacturer\": \"Apple\",",
-									"//   \"mdmImei\": \"dummy15\",",
-									"//   \"mdmMeid\": \"dummy16\",",
-									"//   \"mdmUdid\": \"dummy17\",",
-									"//   \"mdmSerialNumber\": \"dummy18\",",
-									"//   \"mdmDeviceManager\": \"sns\"",
+									"//     \"secret\":\"oWhgNC7oNpaulpJ6\"",
 									"// }"
 								],
 								"type": "text/javascript"
@@ -323,156 +246,40 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n    \"peerNodeName\": \"my-pxgrid-client\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/session/getSessionByMacAddress",
+							"raw": "{{baseUrl}}/pxgrid/control/AccessSecret",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"ise",
-								"session",
-								"getSessionByMacAddress"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getUserGroups",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Body:",
-									"// {}"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// {",
-									"//   \"userGroups\": [",
-									"//     array of userGroup objects",
-									"//   ]",
-									"// }",
-									"",
-									"// \"userGroup\" object",
-									"// {  ",
-									"//    \"userName\":\"user1\",",
-									"//    \"groups\":[  ",
-									"//       {  ",
-									"//          \"name\":\"User Identity Groups:Employee\",",
-									"//          \"type\":\"IDENTITY\"",
-									"//       },",
-									"//       {  ",
-									"//          \"name\":\"Workstation\",",
-									"//          \"type\":\"IDENTITY\"",
-									"//       }",
-									"//    ]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/session/getUserGroups",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"session",
-								"getUserGroups"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getUserGroupByUserName",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Body:",
-									"// {",
-									"//   \"userName\": string (required)",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"",
-									"// {",
-									"//   \"groups\": [ ",
-									"//     array of group objects",
-									"//   ]",
-									"// }",
-									"",
-									"// \"userGroup\" object",
-									"// {  ",
-									"//    \"userName\":\"user1\",",
-									"//    \"groups\":[  ",
-									"//       {  ",
-									"//          \"name\":\"User Identity Groups:Employee\",",
-									"//          \"type\":\"IDENTITY\"",
-									"//       },",
-									"//       {  ",
-									"//          \"name\":\"Workstation\",",
-									"//          \"type\":\"IDENTITY\"",
-									"//       }",
-									"//    ]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/session/getUserGroupByUserName",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"session",
-								"getUserGroupByUserName"
+								"pxgrid",
+								"control",
+								"AccessSecret"
 							]
 						}
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "[xGrid Consumer](https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/pxGrid-Consumer)"
 		},
 		{
 			"name": "MDM",
@@ -526,17 +333,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/mdm/getEndpoints",
+							"raw": "{{baseUrl}}/pxgrid/ise/mdm/getEndpoints",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"mdm",
 								"getEndpoints"
@@ -592,17 +413,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/mdm/getEndpointByMacAddress",
+							"raw": "{{baseUrl}}/pxgrid/ise/mdm/getEndpointByMacAddress",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"mdm",
 								"getEndpointByMacAddress"
@@ -656,17 +491,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/mdm/getEndpointsByType",
+							"raw": "{{baseUrl}}/pxgrid/ise/mdm/getEndpointsByType",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"mdm",
 								"getEndpointsByType"
@@ -724,17 +573,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/mdm/getEndpointsByOsType",
+							"raw": "{{baseUrl}}/pxgrid/ise/mdm/getEndpointsByOsType",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"mdm",
 								"getEndpointsByOsType"
@@ -797,17 +660,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/ise/config/profiler/getProfiles",
+							"raw": "{{baseUrl}}/pxgrid/ise/config/profiler/getProfiles",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"config",
 								"profiler",
@@ -818,732 +695,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "System Health",
-			"item": [
-				{
-					"name": "🚧 getHealths",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"//   // All nodes if not present",
-									"//   \"nodeName\": string (optional),",
-									"//   // Last 1 hour if not present",
-									"//   \"startTimestamp\": ISO8601 Datetime (optional)",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"healths\": [",
-									"//     array of syshealth objects",
-									"//   ]",
-									"// }",
-									"",
-									"// \"health\" object",
-									"// {  ",
-									"//    \"healths\":[  ",
-									"//       {  ",
-									"//          \"timestamp\":\"2017-05-10T15:21:14.294-07:00\",",
-									"//          \"serverName\":\"pxgrid-001\",",
-									"//          \"ioWait\":0.3,",
-									"//          \"cpuUsage\":41.93,",
-									"//          \"memoryUsage\":71.72,",
-									"//          \"diskUsageRoot\":14.0,",
-									"//          \"diskUsageOpt\":18.0,",
-									"//          \"loadAverage\":2.1,",
-									"//          \"networkSent\":2587,",
-									"//          \"networkReceived\":93292",
-									"//       },",
-									"//       {  ",
-									"//          \"timestamp\":\"2017-05-10T15:26:34.375-07:00\",",
-									"//          \"serverName\":\"pxgrid-001\",",
-									"//          \"ioWait\":0.3,",
-									"//          \"cpuUsage\":10.5,",
-									"//          \"memoryUsage\":71.75,",
-									"//          \"diskUsageRoot\":14.0,",
-									"//          \"diskUsageOpt\":18.0,",
-									"//          \"loadAverage\":1.3,",
-									"//          \"networkSent\":5417854,",
-									"//          \"networkReceived\":622182",
-									"//       },",
-									"//       {  ",
-									"//          \"timestamp\":\"2017-05-10T15:31:53.816-07:00\",",
-									"//          \"serverName\":\"pxgrid-001\",",
-									"//          \"ioWait\":0.3,",
-									"//          \"cpuUsage\":7.12,",
-									"//          \"memoryUsage\":71.92,",
-									"//          \"diskUsageRoot\":14.0,",
-									"//          \"diskUsageOpt\":18.0,",
-									"//          \"loadAverage\":0.6,",
-									"//          \"networkSent\":2511451,",
-									"//          \"networkReceived\":580965",
-									"//       },",
-									"//       {  ",
-									"//          \"timestamp\":\"2017-05-10T15:43:52.564-07:00\",",
-									"//          \"serverName\":\"pxgrid-001\",",
-									"//          \"ioWait\":0.3,",
-									"//          \"cpuUsage\":42.15,",
-									"//          \"memoryUsage\":72.11,",
-									"//          \"diskUsageRoot\":14.0,",
-									"//          \"diskUsageOpt\":18.0,",
-									"//          \"loadAverage\":2.2,",
-									"//          \"networkSent\":849611,",
-									"//          \"networkReceived\":174900",
-									"//       }",
-									"//    ]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/system/getHealths",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"system",
-								"getHealths"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getPerformances",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"//   // All nodes if not present",
-									"//   \"nodeName\": string (optional),",
-									"//   // Last 1 hour if not present",
-									"//   \"startTimestamp\": ISO8601 Datetime (optional)",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"performances\": [",
-									"//     array of performance objects",
-									"//   ]",
-									"// }",
-									"",
-									"// \"performance\" object",
-									"// {  ",
-									"//    \"performances\":[  ",
-									"//       {  ",
-									"//          \"timestamp\":\"2017-05-10T18:06:15.011336-07:00\",",
-									"//          \"serverName\":\"pxgrid-001\",",
-									"//          \"radiusRate\":0.0,",
-									"//          \"radiusCount\":0,",
-									"//          \"radiusLatency\":0.0",
-									"//       }",
-									"//    ]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/system/getPerformances",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"system",
-								"getPerformances"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "TrustSec Configuration",
-			"item": [
-				{
-					"name": "🚧 getSecurityGroups",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {      ",
-									"//   // Returns all if ID not specified",
-									"//   \"id\": string (optional)",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"securityGroups\": [",
-									"//     array of securityGroup object      ",
-									"//   ]",
-									"// }",
-									"",
-									"// {",
-									"// \t\"securityGroups\": [{",
-									"// \t\t\"id\": \"92adf9f0-8c01-11e6-996c-525400b48521\",",
-									"// \t\t\"name\": \"Unknown\",",
-									"// \t\t\"description\": \"Unknown Security Group\",",
-									"// \t\t\"tag\": 0",
-									"// \t}, {",
-									"// \t\t\"id\": \"92bb1950-8c01-11e6-996c-525400b48521\",",
-									"// \t\t\"name\": \"ANY\",",
-									"// \t\t\"description\": \"Any Security Group\",",
-									"// \t\t\"tag\": 65535",
-									"// \t}, {",
-									"// \t\t\"id\": \"934557f0-8c01-11e6-996c-525400b48521\",",
-									"// \t\t\"name\": \"Auditors\",",
-									"// \t\t\"description\": \"Auditor Security Group\",",
-									"// \t\t\"tag\": 9",
-									"// \t}]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/config/trustsec/getSecurityGroups",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"config",
-								"trustsec",
-								"getSecurityGroups"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getSecurityGroupAcls",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"//   // Returns all if ID not specified",
-									"//   \"id\": string (optional)",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"securityGroupAcls\": [",
-									"//     array of securityGroupAcl object      ",
-									"//   ]",
-									"// }",
-									"",
-									"// {",
-									"// \t\"securityGroupAcls\": [{",
-									"// \t\t\"id\": \"92919850-8c01-11e6-996c-525400b48521\",",
-									"// \t\t\"name\": \"Deny IP\",",
-									"// \t\t\"description\": \"Deny IP SGACL\",",
-									"// \t\t\"ipVersion\": \"IPV4\",",
-									"// \t\t\"acl\": \"deny ip\",",
-									"// \t\t\"generationId\": \"0\"",
-									"// \t}, {",
-									"// \t\t\"id\": \"92951ac0-8c01-11e6-996c-525400b48521\",",
-									"// \t\t\"name\": \"Permit IP\",",
-									"// \t\t\"description\": \"Permit IP SGACL\",",
-									"// \t\t\"ipVersion\": \"IPV4\",",
-									"// \t\t\"acl\": \"permit ip\",",
-									"// \t\t\"generationId\": \"0\"",
-									"// \t}]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/config/trustsec/getSecurityGroupAcls",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"config",
-								"trustsec",
-								"getSecurityGroupAcls"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getEgressPolicies",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"egressPolicies\": [",
-									"//     array of egressPolicy object      ",
-									"//   ]",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/config/trustsec/getEgressPolicies",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"config",
-								"trustsec",
-								"getEgressPolicies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 getEgressMatrices",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"egressMatrices\": [",
-									"//     array of egressMatrix object      ",
-									"//   ]",
-									"// }",
-									"// {",
-									"//    \"egressMatrices\": [{",
-									"//       \"id\": \"9fa3a33a-329e-43cb-a4cf-7bd38df16e7b\",",
-									"//       \"name\": \"Production\",",
-									"//       \"monitorAll\": false",
-									"//     }, {",
-									"//       \"id\": \"f58b05eb-04ab-4283-8b13-998eda207147\",",
-									"//       \"name\": \"TestMatrix\",",
-									"//       \"description\": \"Test Matrix only\",",
-									"//       \"monitorAll\": false",
-									"//    }]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/config/trustsec/getEgressMatrices",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"config",
-								"trustsec",
-								"getEgressMatrices"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "TrustSec SXP",
-			"item": [
-				{
-					"name": "🚧 getBindings",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request",
-									"// {",
-									"// }",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Reponse",
-									"// {",
-									"//   \"bindings\": [",
-									"//     array of binding objects",
-									"//   ]",
-									"// }",
-									"// {",
-									"// \t\"bindings\": [{",
-									"// \t\t\"ipPrefix\": \"2.2.2.2/32\",",
-									"// \t\t\"tag\": 15,",
-									"// \t\t\"source\": \"172.21.170.196\",",
-									"// \t\t\"peerSequence\": \"172.21.170.196\"",
-									"// \t}]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{baseUrl}}/ise/sxp/getBindings",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"ise",
-								"sxp",
-								"getBindings"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Consumer",
-			"item": [
-				{
-					"name": "🚧 AccountCreate",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request sample",
-									"// {",
-									"//     \"nodeName\":\"MyName01\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Response sample",
-									"// {",
-									"//     \"nodeName\":\"MyName01\",",
-									"//     \"password\":\"P9nEaNX0cyA4DRBr\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"nodeName\":\"MyName01\" }\n"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/control/AccountCreate",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"control",
-								"AccountCreate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 AccountActivate",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request sample",
-									"",
-									"// {",
-									"//     \"description\":\"MyApp 1.0\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Response sample",
-									"",
-									"// {",
-									"//     \"accountState\":\"PENDING\",",
-									"//     \"version\":\"2.0.0.2\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"description\":\"MyApp 1.0\" }\n"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/control/AccountActivate",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"control",
-								"AccountActivate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 ServiceLookup",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request sample",
-									"",
-									"// {",
-									"//     \"name\":\"com.cisco.ise.pubsub\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Response sample",
-									"",
-									"// {",
-									"//     \"services\":[",
-									"//         {",
-									"//             \"name\":\"com.cisco.ise.pubsub\",",
-									"//             \"nodeName\":\"ise-admin-pxgrid-002\",",
-									"//             \"properties\":",
-									"//             {",
-									"//                 \"wsUrl\":\"wss://pxgrid-002.cisco.com:8910/pxgrid/ise/pubsub\"",
-									"//             }",
-									"//         }",
-									"//     ]",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"name\":\"com.cisco.ise.pubsub\" }\n"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/control/ServiceLookup",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"control",
-								"ServiceLookup"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "🚧 AccessSecret",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// Request sample",
-									"// {",
-									"//     \"peerNodeName\":\"ise-admin-pxgrid-002\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// Response sample",
-									"// {",
-									"//     \"secret\":\"oWhgNC7oNpaulpJ6\"",
-									"// }"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"peerNodeName\":\"ise-admin-pxgrid-002\" }\n"
-						},
-						"url": {
-							"raw": "{{baseUrl}}/control/AccessSecret",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"control",
-								"AccessSecret"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"description": "[xGrid Consumer](https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki/pxGrid-Consumer)"
 		},
 		{
 			"name": "Provider",
@@ -1575,17 +726,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{ \"description\":\"MyApp 1.0\" }\n"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/AccountActivate",
+							"raw": "{{baseUrl}}/pxgrid/control/AccountActivate",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"AccountActivate"
 							]
@@ -1648,17 +813,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{ \"name\":\"com.cisco.ise.pubsub\" }\n"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/ServiceRegister",
+							"raw": "{{baseUrl}}/pxgrid/control/ServiceRegister",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"ServiceRegister"
 							]
@@ -1695,17 +874,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/ServiceUnregister",
+							"raw": "{{baseUrl}}/pxgrid/control/ServiceUnregister",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"ServiceUnregister"
 							]
@@ -1742,17 +935,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/ServiceReregister",
+							"raw": "{{baseUrl}}/pxgrid/control/ServiceReregister",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"ServiceReregister"
 							]
@@ -1790,17 +997,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/AccessSecret",
+							"raw": "{{baseUrl}}/pxgrid/control/AccessSecret",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"AccessSecret"
 							]
@@ -1840,17 +1061,31 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/control/Authorization",
+							"raw": "{{baseUrl}}/pxgrid/control/Authorization",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"pxgrid",
 								"control",
 								"Authorization"
 							]
@@ -1952,17 +1187,31 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base_url}}/ise/radius/getFailures",
+							"raw": "{{base_url}}/pxgrid/ise/radius/getFailures",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"radius",
 								"getFailures"
@@ -2058,20 +1307,1197 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base_url}}/ise/radius/getFailures",
+							"raw": "{{base_url}}/pxgrid/ise/radius/getFailures",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
+								"pxgrid",
 								"ise",
 								"radius",
 								"getFailures"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Session Directory",
+			"item": [
+				{
+					"name": "🚧 getSessions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// { \"startTimestamp\": ISO8601 Datetime (optional) }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response:",
+									"// {",
+									"//   \"sessions\": [ ",
+									"//     array of session objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"session\" object",
+									"// {",
+									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
+									"//   \"state\": \"STARTED\",",
+									"//   \"userName\": \"user1\",",
+									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
+									"//   \"auditSessionId\": \"101\",",
+									"//   \"ipAddresses\": [\"1.2.3.4\"],",
+									"//   \"macAddress\": \"33:33:33:33:33:33\",",
+									"//   \"nasIpAddress\": \"172.21.170.242\",",
+									"//   \"adNormalizedUser\": \"user1\",",
+									"//   \"providers\": [\"None\"],",
+									"//   \"endpointCheckResult\": \"none\",",
+									"//   \"identitySourcePortStart\": 0,",
+									"//   \"identitySourcePortEnd\": 0,",
+									"//   \"identitySourcePortFirst\": 0,",
+									"//   \"networkDeviceProfileName\": \"Cisco\",",
+									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
+									"//   \"mdmOsVersion\": \"9.3.5\",",
+									"//   \"mdmRegistered\": true,",
+									"//   \"mdmCompliant\": true,",
+									"//   \"mdmDiskEncrypted\": false,",
+									"//   \"mdmJailBroken\": false,",
+									"//   \"mdmPinLocked\": true,",
+									"//   \"mdmModel\": \"iPad mini\",",
+									"//   \"mdmManufacturer\": \"Apple\",",
+									"//   \"mdmImei\": \"dummy15\",",
+									"//   \"mdmMeid\": \"dummy16\",",
+									"//   \"mdmUdid\": \"dummy17\",",
+									"//   \"mdmSerialNumber\": \"dummy18\",",
+									"//   \"mdmDeviceManager\": \"sns\"",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getSessions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getSessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getSessionsForRecovery",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// {",
+									"//   \"startTimestamp\": ISO8601 Datetime,",
+									"//   \"endTimestamp\": ISO8601 Datetime",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response:",
+									"// {",
+									"//   \"sessions\": [ ",
+									"//     array of session objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"session\" object",
+									"// {",
+									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
+									"//   \"state\": \"STARTED\",",
+									"//   \"userName\": \"user1\",",
+									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
+									"//   \"auditSessionId\": \"101\",",
+									"//   \"ipAddresses\": [\"1.2.3.4\"],",
+									"//   \"macAddress\": \"33:33:33:33:33:33\",",
+									"//   \"nasIpAddress\": \"172.21.170.242\",",
+									"//   \"adNormalizedUser\": \"user1\",",
+									"//   \"providers\": [\"None\"],",
+									"//   \"endpointCheckResult\": \"none\",",
+									"//   \"identitySourcePortStart\": 0,",
+									"//   \"identitySourcePortEnd\": 0,",
+									"//   \"identitySourcePortFirst\": 0,",
+									"//   \"networkDeviceProfileName\": \"Cisco\",",
+									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
+									"//   \"mdmOsVersion\": \"9.3.5\",",
+									"//   \"mdmRegistered\": true,",
+									"//   \"mdmCompliant\": true,",
+									"//   \"mdmDiskEncrypted\": false,",
+									"//   \"mdmJailBroken\": false,",
+									"//   \"mdmPinLocked\": true,",
+									"//   \"mdmModel\": \"iPad mini\",",
+									"//   \"mdmManufacturer\": \"Apple\",",
+									"//   \"mdmImei\": \"dummy15\",",
+									"//   \"mdmMeid\": \"dummy16\",",
+									"//   \"mdmUdid\": \"dummy17\",",
+									"//   \"mdmSerialNumber\": \"dummy18\",",
+									"//   \"mdmDeviceManager\": \"sns\"",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getSessionsForRecovery",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getSessionsForRecovery"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getSessionByIpAddress",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// {",
+									"//   \"startTimestamp\": ISO8601 Datetime,",
+									"//   \"endTimestamp\": ISO8601 Datetime",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response:",
+									"// {",
+									"//   session object",
+									"// }",
+									"",
+									"// \"session\" object",
+									"// {",
+									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
+									"//   \"state\": \"STARTED\",",
+									"//   \"userName\": \"user1\",",
+									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
+									"//   \"auditSessionId\": \"101\",",
+									"//   \"ipAddresses\": [\"1.2.3.4\"],",
+									"//   \"macAddress\": \"33:33:33:33:33:33\",",
+									"//   \"nasIpAddress\": \"172.21.170.242\",",
+									"//   \"adNormalizedUser\": \"user1\",",
+									"//   \"providers\": [\"None\"],",
+									"//   \"endpointCheckResult\": \"none\",",
+									"//   \"identitySourcePortStart\": 0,",
+									"//   \"identitySourcePortEnd\": 0,",
+									"//   \"identitySourcePortFirst\": 0,",
+									"//   \"networkDeviceProfileName\": \"Cisco\",",
+									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
+									"//   \"mdmOsVersion\": \"9.3.5\",",
+									"//   \"mdmRegistered\": true,",
+									"//   \"mdmCompliant\": true,",
+									"//   \"mdmDiskEncrypted\": false,",
+									"//   \"mdmJailBroken\": false,",
+									"//   \"mdmPinLocked\": true,",
+									"//   \"mdmModel\": \"iPad mini\",",
+									"//   \"mdmManufacturer\": \"Apple\",",
+									"//   \"mdmImei\": \"dummy15\",",
+									"//   \"mdmMeid\": \"dummy16\",",
+									"//   \"mdmUdid\": \"dummy17\",",
+									"//   \"mdmSerialNumber\": \"dummy18\",",
+									"//   \"mdmDeviceManager\": \"sns\"",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getSessionByIpAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getSessionByIpAddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getSessionByMacAddress",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// {",
+									"//   \"macAddress\": string (required)",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Response:",
+									"// {",
+									"//   session object",
+									"// }",
+									"",
+									"// \"session\" object",
+									"// {",
+									"//   \"timestamp\": \"2017-06-29T13:22:46.788-07:00\",",
+									"//   \"state\": \"STARTED\",",
+									"//   \"userName\": \"user1\",",
+									"//   \"callingStationId\": \"33:33:33:33:33:33\",",
+									"//   \"auditSessionId\": \"101\",",
+									"//   \"ipAddresses\": [\"1.2.3.4\"],",
+									"//   \"macAddress\": \"33:33:33:33:33:33\",",
+									"//   \"nasIpAddress\": \"172.21.170.242\",",
+									"//   \"adNormalizedUser\": \"user1\",",
+									"//   \"providers\": [\"None\"],",
+									"//   \"endpointCheckResult\": \"none\",",
+									"//   \"identitySourcePortStart\": 0,",
+									"//   \"identitySourcePortEnd\": 0,",
+									"//   \"identitySourcePortFirst\": 0,",
+									"//   \"networkDeviceProfileName\": \"Cisco\",",
+									"//   \"mdmMacAddress\": \"33:33:33:33:33:33\",",
+									"//   \"mdmOsVersion\": \"9.3.5\",",
+									"//   \"mdmRegistered\": true,",
+									"//   \"mdmCompliant\": true,",
+									"//   \"mdmDiskEncrypted\": false,",
+									"//   \"mdmJailBroken\": false,",
+									"//   \"mdmPinLocked\": true,",
+									"//   \"mdmModel\": \"iPad mini\",",
+									"//   \"mdmManufacturer\": \"Apple\",",
+									"//   \"mdmImei\": \"dummy15\",",
+									"//   \"mdmMeid\": \"dummy16\",",
+									"//   \"mdmUdid\": \"dummy17\",",
+									"//   \"mdmSerialNumber\": \"dummy18\",",
+									"//   \"mdmDeviceManager\": \"sns\"",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getSessionByMacAddress",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getSessionByMacAddress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getUserGroups",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// {}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// {",
+									"//   \"userGroups\": [",
+									"//     array of userGroup objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"userGroup\" object",
+									"// {  ",
+									"//    \"userName\":\"user1\",",
+									"//    \"groups\":[  ",
+									"//       {  ",
+									"//          \"name\":\"User Identity Groups:Employee\",",
+									"//          \"type\":\"IDENTITY\"",
+									"//       },",
+									"//       {  ",
+									"//          \"name\":\"Workstation\",",
+									"//          \"type\":\"IDENTITY\"",
+									"//       }",
+									"//    ]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getUserGroups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getUserGroups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getUserGroupByUserName",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Body:",
+									"// {",
+									"//   \"userName\": string (required)",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"",
+									"// {",
+									"//   \"groups\": [ ",
+									"//     array of group objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"userGroup\" object",
+									"// {  ",
+									"//    \"userName\":\"user1\",",
+									"//    \"groups\":[  ",
+									"//       {  ",
+									"//          \"name\":\"User Identity Groups:Employee\",",
+									"//          \"type\":\"IDENTITY\"",
+									"//       },",
+									"//       {  ",
+									"//          \"name\":\"Workstation\",",
+									"//          \"type\":\"IDENTITY\"",
+									"//       }",
+									"//    ]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/session/getUserGroupByUserName",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"session",
+								"getUserGroupByUserName"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "System Health",
+			"item": [
+				{
+					"name": "🚧 getHealths",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"//   // All nodes if not present",
+									"//   \"nodeName\": string (optional),",
+									"//   // Last 1 hour if not present",
+									"//   \"startTimestamp\": ISO8601 Datetime (optional)",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"healths\": [",
+									"//     array of syshealth objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"health\" object",
+									"// {  ",
+									"//    \"healths\":[  ",
+									"//       {  ",
+									"//          \"timestamp\":\"2017-05-10T15:21:14.294-07:00\",",
+									"//          \"serverName\":\"pxgrid-001\",",
+									"//          \"ioWait\":0.3,",
+									"//          \"cpuUsage\":41.93,",
+									"//          \"memoryUsage\":71.72,",
+									"//          \"diskUsageRoot\":14.0,",
+									"//          \"diskUsageOpt\":18.0,",
+									"//          \"loadAverage\":2.1,",
+									"//          \"networkSent\":2587,",
+									"//          \"networkReceived\":93292",
+									"//       },",
+									"//       {  ",
+									"//          \"timestamp\":\"2017-05-10T15:26:34.375-07:00\",",
+									"//          \"serverName\":\"pxgrid-001\",",
+									"//          \"ioWait\":0.3,",
+									"//          \"cpuUsage\":10.5,",
+									"//          \"memoryUsage\":71.75,",
+									"//          \"diskUsageRoot\":14.0,",
+									"//          \"diskUsageOpt\":18.0,",
+									"//          \"loadAverage\":1.3,",
+									"//          \"networkSent\":5417854,",
+									"//          \"networkReceived\":622182",
+									"//       },",
+									"//       {  ",
+									"//          \"timestamp\":\"2017-05-10T15:31:53.816-07:00\",",
+									"//          \"serverName\":\"pxgrid-001\",",
+									"//          \"ioWait\":0.3,",
+									"//          \"cpuUsage\":7.12,",
+									"//          \"memoryUsage\":71.92,",
+									"//          \"diskUsageRoot\":14.0,",
+									"//          \"diskUsageOpt\":18.0,",
+									"//          \"loadAverage\":0.6,",
+									"//          \"networkSent\":2511451,",
+									"//          \"networkReceived\":580965",
+									"//       },",
+									"//       {  ",
+									"//          \"timestamp\":\"2017-05-10T15:43:52.564-07:00\",",
+									"//          \"serverName\":\"pxgrid-001\",",
+									"//          \"ioWait\":0.3,",
+									"//          \"cpuUsage\":42.15,",
+									"//          \"memoryUsage\":72.11,",
+									"//          \"diskUsageRoot\":14.0,",
+									"//          \"diskUsageOpt\":18.0,",
+									"//          \"loadAverage\":2.2,",
+									"//          \"networkSent\":849611,",
+									"//          \"networkReceived\":174900",
+									"//       }",
+									"//    ]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/system/getHealths",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"system",
+								"getHealths"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getPerformances",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"//   // All nodes if not present",
+									"//   \"nodeName\": string (optional),",
+									"//   // Last 1 hour if not present",
+									"//   \"startTimestamp\": ISO8601 Datetime (optional)",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"performances\": [",
+									"//     array of performance objects",
+									"//   ]",
+									"// }",
+									"",
+									"// \"performance\" object",
+									"// {  ",
+									"//    \"performances\":[  ",
+									"//       {  ",
+									"//          \"timestamp\":\"2017-05-10T18:06:15.011336-07:00\",",
+									"//          \"serverName\":\"pxgrid-001\",",
+									"//          \"radiusRate\":0.0,",
+									"//          \"radiusCount\":0,",
+									"//          \"radiusLatency\":0.0",
+									"//       }",
+									"//    ]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/system/getPerformances",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"system",
+								"getPerformances"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TrustSec Configuration",
+			"item": [
+				{
+					"name": "🚧 getSecurityGroups",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {      ",
+									"//   // Returns all if ID not specified",
+									"//   \"id\": string (optional)",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"securityGroups\": [",
+									"//     array of securityGroup object      ",
+									"//   ]",
+									"// }",
+									"",
+									"// {",
+									"// \t\"securityGroups\": [{",
+									"// \t\t\"id\": \"92adf9f0-8c01-11e6-996c-525400b48521\",",
+									"// \t\t\"name\": \"Unknown\",",
+									"// \t\t\"description\": \"Unknown Security Group\",",
+									"// \t\t\"tag\": 0",
+									"// \t}, {",
+									"// \t\t\"id\": \"92bb1950-8c01-11e6-996c-525400b48521\",",
+									"// \t\t\"name\": \"ANY\",",
+									"// \t\t\"description\": \"Any Security Group\",",
+									"// \t\t\"tag\": 65535",
+									"// \t}, {",
+									"// \t\t\"id\": \"934557f0-8c01-11e6-996c-525400b48521\",",
+									"// \t\t\"name\": \"Auditors\",",
+									"// \t\t\"description\": \"Auditor Security Group\",",
+									"// \t\t\"tag\": 9",
+									"// \t}]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/config/trustsec/getSecurityGroups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"config",
+								"trustsec",
+								"getSecurityGroups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getSecurityGroupAcls",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"//   // Returns all if ID not specified",
+									"//   \"id\": string (optional)",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"securityGroupAcls\": [",
+									"//     array of securityGroupAcl object      ",
+									"//   ]",
+									"// }",
+									"",
+									"// {",
+									"// \t\"securityGroupAcls\": [{",
+									"// \t\t\"id\": \"92919850-8c01-11e6-996c-525400b48521\",",
+									"// \t\t\"name\": \"Deny IP\",",
+									"// \t\t\"description\": \"Deny IP SGACL\",",
+									"// \t\t\"ipVersion\": \"IPV4\",",
+									"// \t\t\"acl\": \"deny ip\",",
+									"// \t\t\"generationId\": \"0\"",
+									"// \t}, {",
+									"// \t\t\"id\": \"92951ac0-8c01-11e6-996c-525400b48521\",",
+									"// \t\t\"name\": \"Permit IP\",",
+									"// \t\t\"description\": \"Permit IP SGACL\",",
+									"// \t\t\"ipVersion\": \"IPV4\",",
+									"// \t\t\"acl\": \"permit ip\",",
+									"// \t\t\"generationId\": \"0\"",
+									"// \t}]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/config/trustsec/getSecurityGroupAcls",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"config",
+								"trustsec",
+								"getSecurityGroupAcls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getEgressPolicies",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"egressPolicies\": [",
+									"//     array of egressPolicy object      ",
+									"//   ]",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/config/trustsec/getEgressPolicies",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"config",
+								"trustsec",
+								"getEgressPolicies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "🚧 getEgressMatrices",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"egressMatrices\": [",
+									"//     array of egressMatrix object      ",
+									"//   ]",
+									"// }",
+									"// {",
+									"//    \"egressMatrices\": [{",
+									"//       \"id\": \"9fa3a33a-329e-43cb-a4cf-7bd38df16e7b\",",
+									"//       \"name\": \"Production\",",
+									"//       \"monitorAll\": false",
+									"//     }, {",
+									"//       \"id\": \"f58b05eb-04ab-4283-8b13-998eda207147\",",
+									"//       \"name\": \"TestMatrix\",",
+									"//       \"description\": \"Test Matrix only\",",
+									"//       \"monitorAll\": false",
+									"//    }]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/config/trustsec/getEgressMatrices",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"config",
+								"trustsec",
+								"getEgressMatrices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TrustSec SXP",
+			"item": [
+				{
+					"name": "🚧 getBindings",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Request",
+									"// {",
+									"// }",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Reponse",
+									"// {",
+									"//   \"bindings\": [",
+									"//     array of binding objects",
+									"//   ]",
+									"// }",
+									"// {",
+									"// \t\"bindings\": [{",
+									"// \t\t\"ipPrefix\": \"2.2.2.2/32\",",
+									"// \t\t\"tag\": 15,",
+									"// \t\t\"source\": \"172.21.170.196\",",
+									"// \t\t\"peerSequence\": \"172.21.170.196\"",
+									"// \t}]",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "Request Data Format",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": "Response Data Format",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pxgrid/ise/sxp/getBindings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pxgrid",
+								"ise",
+								"sxp",
+								"getBindings"
 							]
 						}
 					},
@@ -2085,12 +2511,12 @@
 		"basic": [
 			{
 				"key": "password",
-				"value": "{{rest_password}}",
+				"value": "{{pxgrid_auth_password}}",
 				"type": "string"
 			},
 			{
 				"key": "username",
-				"value": "{{rest_username}}",
+				"value": "{{pxgrid_auth_username}}",
 				"type": "string"
 			}
 		]
@@ -2125,8 +2551,24 @@
 			"value": "8910"
 		},
 		{
-			"key": "base_url",
-			"value": "https://{{ise_pxg}}:{{port}}/pxgrid"
+			"key": "baseUrl",
+			"value": "https://{{ise_pxg}}:{{port}}"
+		},
+		{
+			"key": "rest_username",
+			"value": "admin"
+		},
+		{
+			"key": "rest_password",
+			"value": "C1sco12345"
+		},
+		{
+			"key": "pxgrid_auth_username",
+			"value": "my-pxgrid-client"
+		},
+		{
+			"key": "pxgrid_auth_password",
+			"value": "C1sco12345"
 		}
 	]
 }
