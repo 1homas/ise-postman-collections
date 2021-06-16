@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "179b0f71-8249-4cdb-b4a3-1d048d3b4398",
-		"name": "Cisco_ISE_ERS_APIs",
-		"description": "# Cisco ISE 3.0 ERS REST APIs\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pan`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`\nIf you want to manipulate the `guestuser` resource(s) you will also need to use a separate sponsor account specified with:\n- `guestuser_username`: Default: `guestapi`\n- `guestuser_password`: Default: `C1sco12345`",
+		"_postman_id": "2336c7c0-5e3f-42cd-b10f-49789c9bb474",
+		"name": "Cisco ISE API - ERS",
+		"description": "# Cisco ISE API - ERS\n\nISE External RESTful Services (ERS) API resources up to and including ISE 3.0.\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status Icons\nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pan`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`\nIf you want to manipulate the `guestuser` resource(s) you will also need to use a separate sponsor account specified with:\n- `guestuser_username`: Default: `guestapi`\n- `guestuser_password`: Default: `C1sco12345`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -5682,7 +5682,7 @@
 					]
 				},
 				{
-					"name": "🚧 authorizationprofile",
+					"name": "authorizationprofile: Test",
 					"event": [
 						{
 							"listen": "test",
@@ -5729,7 +5729,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n    \"AuthorizationProfile\": {\n        \"name\": \"Internet_Only\",\n        \"description\": \"\",\n        \"accessType\": \"ACCESS_ACCEPT\",\n        \"authzProfileType\": \"SWITCH\",\n        \"trackMovement\": false,\n        \"agentlessPosture\": false,\n        \"serviceTemplate\": false,\n        \"easywiredSessionCandidate\": false,\n        \"daclName\": \"Internet_Only\",\n        \"profileName\": \"Cisco\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/authorizationprofile",
@@ -5746,7 +5746,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 authorizationprofile/{id}",
+					"name": "authorizationprofile/{id} : Test description",
 					"event": [
 						{
 							"listen": "test",
@@ -5780,6 +5780,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"AuthorizationProfile\": {\n        \"id\": \"88f86a70-b371-11eb-bc0f-8a514852e84a\",\n        \"name\": \"Test\",\n        \"description\": \"\",\n        \"accessType\": \"ACCESS_REJECT\",\n        \"authzProfileType\": \"SWITCH\",\n        \"trackMovement\": false,\n        \"agentlessPosture\": false,\n        \"serviceTemplate\": false,\n        \"easywiredSessionCandidate\": false,\n        \"daclName\": \"PERMIT_ALL_IPV4_TRAFFIC\",\n        \"profileName\": \"Cisco\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/authorizationprofile/{{id}}",
 							"host": [
@@ -5791,7 +5795,63 @@
 								"authorizationprofile",
 								"{{id}}"
 							]
+						},
+						"description": "🛑 See [ISE REST API - AuthZ Profile modification\n](https://community.cisco.com/t5/network-access-control/ise-rest-api-authz-profile-modification/m-p/4398586) for problem with trying to change `accessType` attribute."
+					},
+					"response": []
+				},
+				{
+					"name": "🛑 authorizationprofile/{id} : ACCESS_REJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "Request data format",
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Response data format",
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"AuthorizationProfile\": {\n        \"id\": \"88f86a70-b371-11eb-bc0f-8a514852e84a\",\n        \"name\": \"Test\",\n        \"description\": \"\",\n        \"accessType\": \"ACCESS_REJECT\",\n        \"authzProfileType\": \"SWITCH\",\n        \"trackMovement\": false,\n        \"agentlessPosture\": false,\n        \"serviceTemplate\": false,\n        \"easywiredSessionCandidate\": false,\n        \"daclName\": \"PERMIT_ALL_IPV4_TRAFFIC\",\n        \"profileName\": \"Cisco\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/ers/config/authorizationprofile/{{id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ers",
+								"config",
+								"authorizationprofile",
+								"{{id}}"
+							]
+						},
+						"description": "🛑 See [ISE REST API - AuthZ Profile modification\n](https://community.cisco.com/t5/network-access-control/ise-rest-api-authz-profile-modification/m-p/4398586) for problem with trying to change `accessType` attribute."
 					},
 					"response": []
 				},
@@ -11229,7 +11289,7 @@
 			"name": "EndpointCert",
 			"item": [
 				{
-					"name": "🚧 endpointcert/certRequest",
+					"name": "certRequest : pxGrid Client",
 					"event": [
 						{
 							"listen": "test",
@@ -11269,7 +11329,7 @@
 						"strictSSL": false
 					},
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"description": "Request data format",
@@ -11284,6 +11344,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ERSEndPointCert\": {\n    \"certTemplateName\": \"pxGrid_Certificate_Template\",\n    \"format\": \"PKCS12\",\n    \"password\": \"C1sco12345\",\n    \"certificateRequest\": {\n      \"san\": \"11-22-33-44-55-66\",\n      \"cn\": \"my_endpoint\"\n    }\n  }\n}\n"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/endpointcert/certRequest",
 							"host": [
@@ -11297,7 +11361,119 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "my_endpoint",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Request data format",
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"description": "Response data format",
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ERSEndPointCert\": {\n    \"certTemplateName\": \"pxGrid_Certificate_Template\",\n    \"format\": \"PKCS12\",\n    \"password\": \"C1sco12345\",\n    \"certificateRequest\": {\n      \"san\": \"11-22-33-44-55-66\",\n      \"cn\": \"my_endpoint\"\n    }\n  }\n}\n"
+								},
+								"url": {
+									"raw": "{{base_url}}/ers/config/endpointcert/certRequest",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ers",
+										"config",
+										"endpointcert",
+										"certRequest"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "raw",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-WebKit-CSP",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "attachment; filename=\"endpointcert.zip\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Jun 2021 21:32:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/octet-stream"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3204"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": ""
+								}
+							],
+							"cookie": [],
+							"body": "PK\u0003\u0004\u0014\u0000\b\b\b\u0000\u001d��R\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000!\u0000\u0000\u0000my_endpoint_11-22-33-44-55-66.p12e�w4\u001b\\\u001f���M��Y5j����hk���M�*��=Z5\u001a���.�FQ���F\u0011�FH��֮�\u001a������o��<�{�����\u0003�ү��\u00140,=��V\"Z7�\u0017#�\u001aX��O\u0003c�.t\u001c\fK��?#��`,eԅ~vqB���9b�\u0003����\u0013\u0018\u0016|\b\u0013�����X�\r�dj�\u0000�,\u000f�$�d�!������%@ 0\u0000�\u0005��DA�6�J:��\u0013f�\u0000E���^9�,�\u0012�ؓ��Ԛ����sR#��9\u001d�us{�|N�ɇt��8���\u0014#�h�|\u0005�{�}�y�^qy��\u0017��\u0000\u000bc�?%\b6��K���\u0013��'!�&;\u001f<�2\u001c+`B�%\u0001Ә��,���\n�\u0003�\u001a���(o��`6�Gz[I�0��7���Q΀=o�κa�L�d^�6�1���[k�і�1��Cf�v����cu\u0012�A��\n����A5\u001a>\u001a\u001bj�yw �D4�$��\u0001�/���M��\u0012��\n�K��o$��妥���'ŷGlz�.X�\u0004�pxˁ�������\u0013�'c\u001aS�\u0002F6O�X9�f\u0019���;\b�����3��c�\r��0��G�j�AG��ÿ0�km��\u001c!]\u0013\u0012�\u001cqg=9�¿\u0015bC\u001dl#��ɽ���2���<��\u001a��s\u0010b�\u000e.�Q��E�\u0015:bvtq��\u000e�Է�pϪfu�����;�XjTT\u0000 �G\u001d���>�\u0019��\u0017�E\u000eꧺڳ�޵\u001e���E9qÁ�T\u0004��}�/�ﱨ�m^��)�\u001f\u0007��\u0004j\u0011@\n6=m�Ѥ�5�Н~ Ut�����ԃGϧ\u0015?;=b\u001e\u001b�G5\u001d�\u0017\u0006�o�o\u0001��\u0003ʨyB�\u0015�<�f�ZW̪�ap\u0002mm��2M�x�\u0005�.Sd��jF+Y��\u0018.����j��?Z��g�\u0019�|u�@UeED��kb�� ���f�;�\u0000~'.gS����UNw��w^�\u0010�z��\b\u0011\u0015��аM��&��!.�*\\�Ѥ�j��B\u001cʛa#��Ñg��r���4+n�z�\u001a[��[K\u0000>�#�\u0003}�Y\u0018)4�܂�\u001a+����e��\u0013I�w�sݪ�xV�\\��U| �ぇ}���\u001c�b��\u0010\u0017ɲ��\t\u000bY��\u0016�~i��p�#�RL�`��^��7��F\u0004Yн%Z��\u0013�\u0000:�!�g#�т�?�x�b�\r�ӎ�sй\u001a7`\u0010��hP\u0005�s9�3���j���a��v>��J�\u0001�\u001e~�\u001c�l��0xU�\u0002?�� �\u0001���~�}���\u001ad\u001cr�+^�\u001b5�����H��6�?�z�'pP�fݼ\u000e\u0000<P\u001b�p�Yʫ`H{�\u001c�\u000b�*��\"\\�s��FVuX;wwT@�U�4\rk0����u�S�\"���\u0001s�!)X�s<��7�dV��Mb\u0001v���y���\u0012\n�\u001a\f�[��\u0016�w�\u0004�q�B�\t�r����:Տ\u001b\u001d�\u001f֛\n���&\u0006\n#�~r��*GAEl���N�_1�M�\u0019\u0013�u�(�|m�\u001b9�َ\u0006^'O֎$zOE'�2d>�|{�R$\u0011\u0007��T�\u001530�\b�\u0019b�fN�,���V�\u0013(4<���_izER�[��\u0000ܳYG�@!8d\u0018�Zih��\u0006��\u0001Dl)\bs�n�o�\"������,��\u0019�4mp�\u0019�!6���e�\u001bMv��U��d.��a=<�.����`u\u000f��P%�L.ʅ���X\u0019/�пKI�.s\u0019\f�i\f��*�:4ڒ��3�)1���\u001d���'��\n�\u0012�\u0003�\u0018p\u000f�\u0002�\u0000�\u0003�\u0000�\u0000������\\ \u0005��@\n\u0000�@\n��@\np�\u0002)�\u001c@�\"�\u001b�i3�E�g.�\u0014\b\b��F����\u001f�\u0000\u001a�B��\u001cCM�Cu'\u001d�`\u000e�W\u00079�\"�Mm�[\t�:2�H��gN�ZD�Id��\u001b|�9Zi�ѿ�@�۫�\bH-\b鷃�l��R�N�ƴ��B)�\u0018{��I\u000f6U�\u0007S혛|�C\ndZ�+Z��!�� \u0003�L\u001c\u0006\u0016W\n��k�)v���\u0000��OΙ�$;�\u0010x�R�R�\u001e�u�R2\r{\u0000E[!�o��w\u0003Q��㏪ӐdΔ�XԄ79�M�_���Q\u000fsU���RA��>��\u0006ec\u0000_��\u0015�F�%�\u000b\u0018�\u0019�+�Q��@��\u001ao�>���A�R�\u0017z��۽\f�!�g�\u001d;A�\u0017£\u0019~\\�\u0012�^��y�\u00001-������\bC9|\u0005*��\u001dwxs�\u0001{{�\u001a�Oc\r��\r��ם����,�ym\"Z��E���w�e�f�\tz���4���}�J�e{?E�\u001fb(��\u0018\u0013��F=�\u001e�l��ϵ�G+D\u0002�u3���z�����\u0014��ʾ\u001b\"Ώǵ_�}\u0000��׏�\u000fMl��о�C�ڭgAۙ��$ᢖ�t\u000e�c$팡��\u0012YzlM��~C ,lnGZɡ� *\u000b�[8m\u0019����{\u001f\u0001�:׏;�X�>S6n+a����ҋݫ\u0012��|s\u0001��\u001eľ��e�⡫��Q��O��m��[�\u0019\f�֜2��\u000e�Ӆ\u0019�8�0O\u0016��m��N�����\u0003]\t�W�5�\u0013��s���?q�K<�+q�|�>!��a/)��\u0014�>M�\\�o��c0\u000b��풋��M��q���E����Ov\u00066��Ɖ�I)�\"L1�\u001dPm��G�d�н\t��=��PKm\r\u0003�u�{k]�V%x�\u0015�2����L+\u001b��-��-��\u0016\u0005DSW\u0014��6�2\u001b�G\n˚���0)�A\u001e�?(�DV,6��{�3ȞMu�\u000bN��}�x�&�8xW��¼&Q��q\u0013L�LX�F\nuY��\t\u0015�p\u0002��a\"\u001b�񞪵{���\\�X\u0012 9(R\u0005\u0001���ȥ\u001e�\u0000`��I��\n\r���\u001b�Y��*�nq��\u0018d�\b��_W\u0010��Q7[�z[�yb\u000e�\u0010\u0010fmYҒ&\u0003����a*�&�\u0012óz~�^g�33�\u0010_f�� =�6�|?/�-�(6cy�������d26=W���^�C�\u0019f�Ψe1E��S@(�R�\n~�>ĸ2���B�򒔵X�ҳ�Z?�w\u001bp�O'��GtV\u001bi��!\u001d�u�&���\u0007v�@�\u0015��g\u000eA���5��S�X�+uY�͚�\u0011\u0011{y\u0001���S�K��\t��]�47��5:ڎ�|�Ss\u0001-N4���\u000b�\\�^�������f����\u001e|c|A\u0005�\u0005��u>Ӄٌ�f�~�V�\"ʡ����&��\u0011\u001c��}\t�Q�ߝ���d��wl#\u0016c_�^I��\u0013����\u0011���\u0015�{3=^Ә��.\u0015����¥\u0003LV3�e?Q��b�\u001cRb�?z9��h\u0001\"ը�}c$����:SI\u0003�\u0015�\u0000݇\f�_8C�1$�M�`�v\f��n���%܁7\u000e}û\u0013\u001f.�\"pbȋN�Ղ��kM6X\u001c��Y}+���\u0014}��d��S�S�\u0000U�n�T�z�r��j�Jd^Q!��L��\u001a�/I�=E8\r�PKѴͫN�k\u001cd4^�\u0011\n'5fT��\bq�\u0011�e��@��YA\u0001\r~�2ifR4�E��o\u001b���\u0005G�\u0012qt5x�l�T8�\u0011��3�\u0010�O\u0006\u0019\r�gѢ�K�a\u001e�ɭ\u000b�lw�z�,s)\u0004j�\u0007f�}빫�ϐZm[��~����PYu5����0\u0003\\8G,ի���\u0004`�T���(@ܔ\u00000��\u001a�.�\f��������Y��\u001a\u0018�{��YS�l@\u0013bL\\k.��x�w��\u0001PK\u0007\bj?hU�\u000b\u0000\u0000�\u000b\u0000\u0000PK\u0001\u0002\u0014\u0000\u0014\u0000\b\b\b\u0000\u001d��Rj?hU�\u000b\u0000\u0000�\u000b\u0000\u0000!\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000my_endpoint_11-22-33-44-55-66.p12PK\u0005\u0006\u0000\u0000\u0000\u0000\u0001\u0000\u0001\u0000O\u0000\u0000\u0000\u001f\f\u0000\u0000\u0000\u0000"
+						}
+					]
 				}
 			]
 		},
@@ -15242,7 +15418,7 @@
 			"name": "GuestUser",
 			"item": [
 				{
-					"name": "guestuser (⚠ requires sponsor)",
+					"name": "✅  guestuser (⚠ requires sponsor)",
 					"event": [
 						{
 							"listen": "test",
@@ -15300,21 +15476,6 @@
 						"strictSSL": false
 					},
 					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{guestuser_password}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{guestuser_username}}",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -15594,7 +15755,7 @@
 					]
 				},
 				{
-					"name": "guestuser/{id}",
+					"name": "✅  guestuser/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -15761,7 +15922,7 @@
 					]
 				},
 				{
-					"name": "guestuser/name/{name}",
+					"name": "✅  guestuser/name/{name}",
 					"event": [
 						{
 							"listen": "test",
@@ -15955,7 +16116,7 @@
 					]
 				},
 				{
-					"name": "guestuser",
+					"name": "✅  guestuser: thomas",
 					"event": [
 						{
 							"listen": "test",
@@ -16045,7 +16206,221 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"GuestUser\": {\n        \"guestType\": \"Daily (default)\",\n        \"reasonForVisit\": \"ISE Guest Services\",\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"guestInfo\": {\n            \"enabled\": \"true\",\n            \"userName\": \"1homas\",\n            \"password\": \"C1sco12345\",\n            \"firstName\": \"Thomas\",\n            \"lastName\": \"Howard\",\n            \"emailAddress\": \"thomas@cisco.com\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 1,\n            \"fromDate\": \"04/27/2021 17:40\",\n            \"toDate\": \"04/28/2021 17:40\",\n            \"location\": \"San Jose\"\n        }\n    }\n}"
+							"raw": "{\n    \"GuestUser\": {\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"guestType\": \"Daily (default)\",\n        \"reasonForVisit\": \"ISE\",\n        \"guestInfo\": {\n            \"userName\": \"thomas\",\n            \"firstName\": \"Thomas\",\n            \"lastName\": \"Howard\",\n            \"emailAddress\": \"thomas@example.com\",\n            \"password\": \"C1sco12345\",\n            \"enabled\": true,\n            \"notificationLanguage\": \"English\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 1,\n            \"fromDate\": \"05/11/2021 17:40\",\n            \"toDate\": \"05/12/2021 17:40\",\n            \"location\": \"San Jose\"\n        },\n        \"customFields\": {}\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/ers/config/guestuser",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ers",
+								"config",
+								"guestuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅  guestuser: 1homas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"function get_id_from_location (location) {",
+									"    splits = location.split('/');",
+									"    return splits[splits.length - 1]",
+									"}",
+									"location = pm.response.headers.get('Location');",
+									"if (location) {",
+									"    uuid = get_id_from_location(location);",
+									"    pm.environment.set(\"id\", uuid);",
+									"    console.log('UUID: '+uuid);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// guestType = ''           // ['Daily (default)','Weekly (default)','Contractor (default)','SocialLogin (default)']",
+									"// portalId = ''            // must be the Sponsor Portal",
+									"// username = ''            // optional; will be random if not specified",
+									"// password = 'C1sco12345'  // optional; will be random if not specified",
+									"// firstName = ''           // optional",
+									"// lastName = ''            // optional",
+									"// emailAddress = ''        // optional",
+									"// validDays = 1            // ",
+									"// fromDate = ''            // \"03/27/2021 17:40\"",
+									"// toDate = ''              // \"03/28/2021 17:40\"",
+									"// location = 'San Jose'    // default",
+									"// template = `",
+									"// {",
+									"//     \"GuestUser\": {",
+									"//         \"guestType\": \"Daily (default)\",",
+									"//         \"reasonForVisit\": \"ISE Guest Services\",",
+									"//         \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",",
+									"//         \"guestInfo\": {",
+									"//             \"enabled\": \"true\",",
+									"//             \"userName\": \"thomas\",",
+									"//             \"password\": \"C1sco12345\",",
+									"//             \"firstName\": \"Thomas\",",
+									"//             \"lastName\": \"Howard\",",
+									"//             \"emailAddress\": \"thomas@cisco.com\"",
+									"//         },",
+									"//         \"guestAccessInfo\": {",
+									"//             \"validDays\": 1,",
+									"//             \"fromDate\": \"03/27/2021 17:40\",",
+									"//             \"toDate\": \"03/28/2021 17:40\",",
+									"//             \"location\": \"San Jose\"",
+									"//         }",
+									"//     }",
+									"// }",
+									"// `",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Request data format",
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Response data format",
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestUser\": {\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"guestType\": \"Daily (default)\",\n        \"reasonForVisit\": \"ISE\",\n        \"guestInfo\": {\n            \"userName\": \"1homas\",\n            \"firstName\": \"Thomas\",\n            \"lastName\": \"Howard\",\n            \"emailAddress\": \"1homas@example.com\",\n            \"password\": \"C1sco12345\",\n            \"enabled\": true,\n            \"notificationLanguage\": \"English\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 2,\n            \"fromDate\": \"05/10/2021 16:30\",\n            \"toDate\": \"05/12/2021 17:40\",\n            \"location\": \"San Jose\"\n        },\n        \"customFields\": {}\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/ers/config/guestuser",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ers",
+								"config",
+								"guestuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅  guestuser Daily/random",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"function get_id_from_location (location) {",
+									"    splits = location.split('/');",
+									"    return splits[splits.length - 1]",
+									"}",
+									"location = pm.response.headers.get('Location');",
+									"if (location) {",
+									"    uuid = get_id_from_location(location);",
+									"    pm.environment.set(\"id\", uuid);",
+									"    console.log('UUID: '+uuid);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// guestType = ''           // ['Daily (default)','Weekly (default)','Contractor (default)','SocialLogin (default)']",
+									"// portalId = ''            // must be the Sponsor Portal",
+									"// username = ''            // optional; will be random if not specified",
+									"// password = 'C1sco12345'  // optional; will be random if not specified",
+									"// firstName = ''           // optional",
+									"// lastName = ''            // optional",
+									"// emailAddress = ''        // optional",
+									"// validDays = 1            // ",
+									"// fromDate = ''            // \"03/27/2021 17:40\"",
+									"// toDate = ''              // \"03/28/2021 17:40\"",
+									"// location = 'San Jose'    // default",
+									"// template = `",
+									"// {",
+									"//     \"GuestUser\": {",
+									"//         \"guestType\": \"Daily (default)\",",
+									"//         \"reasonForVisit\": \"ISE Guest Services\",",
+									"//         \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",",
+									"//         \"guestInfo\": {",
+									"//             \"enabled\": \"true\",",
+									"//             \"userName\": \"thomas\",",
+									"//             \"password\": \"C1sco12345\",",
+									"//             \"firstName\": \"Thomas\",",
+									"//             \"lastName\": \"Howard\",",
+									"//             \"emailAddress\": \"thomas@cisco.com\"",
+									"//         },",
+									"//         \"guestAccessInfo\": {",
+									"//             \"validDays\": 1,",
+									"//             \"fromDate\": \"03/27/2021 17:40\",",
+									"//             \"toDate\": \"03/28/2021 17:40\",",
+									"//             \"location\": \"San Jose\"",
+									"//         }",
+									"//     }",
+									"// }",
+									"// `",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Request data format",
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Response data format",
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestUser\": {\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"guestType\": \"Daily (default)\",\n        \"reasonForVisit\": \"ISE\",\n        \"guestInfo\": {\n            \"userName\": \"rando\",\n            \"firstName\": \"Randy\",\n            \"lastName\": \"Random\",\n            \"emailAddress\": \"rando@example.com\",\n            \"password\": \"C1sco12345\",\n            \"enabled\": true,\n            \"notificationLanguage\": \"English\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 1,\n            \"fromDate\": \"05/11/2021 17:40\",\n            \"toDate\": \"05/12/2021 17:40\",\n            \"location\": \"San Jose\"\n        },\n        \"customFields\": {}\n    }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestuser",
@@ -16098,7 +16473,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"GuestUser\": {\n        \"id\": \"4cea2c31-605c-42d2-92d1-1e999b61aad0\",\n        \"guestType\": \"Daily (default)\",\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"guestInfo\": {\n            \"enabled\": true\n        }\n    }\n}"
+							"raw": "{\n    \"GuestUser\": {\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"id\": \"3d8f4e3a-5198-4417-938c-3f29c87f4f68\",\n        \"name\": \"thomas\",\n        \"guestType\": \"Daily (default)\",\n        \"status\": \"AWAITING_INITIAL_LOGIN\",\n        \"reasonForVisit\": \"ISE demo\",\n        \"sponsorUserName\": \"guestapi\",\n        \"sponsorUserId\": \"9632c5d4-b42d-47da-a6be-b7290f443882\",\n        \"guestInfo\": {\n            \"userName\": \"thomas\",\n            \"firstName\": \"Thomas\",\n            \"lastName\": \"Howard\",\n            \"emailAddress\": \"thomas@example.com\",\n            \"password\": \"C1sco12345\",\n            \"creationTime\": \"05/09/2021 10:38\",\n            \"enabled\": true,\n            \"notificationLanguage\": \"English\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 1,\n            \"fromDate\": \"05/11/2021 17:40\",\n            \"toDate\": \"05/12/2021 17:40\",\n            \"location\": \"San Jose\"\n        },\n        \"customFields\": {}\n    }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestuser/{{id}}",
@@ -16116,7 +16491,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 guestuser/name/{name}",
+					"name": "guestuser/name/{name}",
 					"event": [
 						{
 							"listen": "test",
@@ -16150,6 +16525,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestUser\": {\n        \"portalId\" : \"bd48c1a1-9477-4746-8e40-e43d20c9f429\",\n        \"id\": \"3d8f4e3a-5198-4417-938c-3f29c87f4f68\",\n        \"name\": \"thomas\",\n        \"guestType\": \"Daily (default)\",\n        \"status\": \"AWAITING_INITIAL_LOGIN\",\n        \"reasonForVisit\": \"ISE demo\",\n        \"sponsorUserName\": \"guestapi\",\n        \"sponsorUserId\": \"9632c5d4-b42d-47da-a6be-b7290f443882\",\n        \"guestInfo\": {\n            \"userName\": \"thomas\",\n            \"firstName\": \"Thomas\",\n            \"lastName\": \"Howard\",\n            \"emailAddress\": \"thomas@example.com\",\n            \"password\": \"C1sco12345\",\n            \"creationTime\": \"05/09/2021 10:38\",\n            \"enabled\": true,\n            \"notificationLanguage\": \"English\"\n        },\n        \"guestAccessInfo\": {\n            \"validDays\": 1,\n            \"fromDate\": \"05/11/2021 17:40\",\n            \"toDate\": \"05/12/2021 17:40\",\n            \"location\": \"San Jose\"\n        },\n        \"customFields\": {}\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestuser/name/{{name}}",
 							"host": [
@@ -16215,7 +16594,108 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Status Not Pending Approval",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Request data format",
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"description": "Response data format",
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ers/config/guestuser/approve/{{id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ers",
+										"config",
+										"guestuser",
+										"approve",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-WebKit-CSP",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 10 May 2021 22:57:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Server",
+									"value": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ERSResponse\": {\n        \"operation\": \"PUT-approve-guestuser\",\n        \"messages\": [\n            {\n                \"title\": \"Approve request for GuestUser By ID (c67db306-d359-4345-8267-97287fff7adf) failed due to Can not approve user when its status is not 'Pending Approval'\",\n                \"type\": \"ERROR\",\n                \"code\": \"CRUD operation exception\"\n            }\n        ],\n        \"link\": {\n            \"rel\": \"related\",\n            \"href\": \"https://ise.securitydemo.net:9060/ers/config/guestuser/approve/c67db306-d359-4345-8267-97287fff7adf\",\n            \"type\": \"application/xml\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "🚧 guestuser/changeSponsorPassword/{portalId}",
@@ -16317,7 +16797,108 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Status Not Pending Approval",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Request data format",
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"description": "Response data format",
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ers/config/guestuser/deny/{{id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ers",
+										"config",
+										"guestuser",
+										"deny",
+										"{{id}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-WebKit-CSP",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 10 May 2021 22:58:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Server",
+									"value": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ERSResponse\": {\n        \"operation\": \"PUT-deny-guestuser\",\n        \"messages\": [\n            {\n                \"title\": \"Deny request for GuestUser By ID (c67db306-d359-4345-8267-97287fff7adf) failed due to Can not deny user when its status is not 'Pending Approval'\",\n                \"type\": \"ERROR\",\n                \"code\": \"CRUD operation exception\"\n            }\n        ],\n        \"link\": {\n            \"rel\": \"related\",\n            \"href\": \"https://ise.securitydemo.net:9060/ers/config/guestuser/deny/c67db306-d359-4345-8267-97287fff7adf\",\n            \"type\": \"application/xml\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "🚧 guestuser/email/{id}/portalId/{portalId}",
@@ -16614,6 +17195,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"OperationAdditionalData\": {\n        \"additionalData\": [\n            {\n                \"name\": \"Reason\",\n                \"value\": \"Because I said so\"\n            }\n        ]\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestuser/suspend/{{id}}",
 							"host": [
@@ -22516,7 +23101,7 @@
 					"response": []
 				},
 				{
-					"name": "networkdevice : Basic RADIUS & TACACS Copy",
+					"name": "networkdevice : Detailed RADIUS & TACACS",
 					"event": [
 						{
 							"listen": "test",
@@ -32081,7 +32666,7 @@
 							"raw": "{\n    \"Sgt\": {\n        \"name\": \"Printers\",\n        \"description\": \"Printers\",\n        \"value\": 999,\n        \"generationId\": \"0\",\n        \"propogateToApic\": true\n    }\n}"
 						},
 						"url": {
-							"raw": "{{base_url}}/ers/config/sgt?name=&description=",
+							"raw": "{{base_url}}/ers/config/sgt",
 							"host": [
 								"{{base_url}}"
 							],
@@ -42347,37 +42932,30 @@
 	],
 	"variable": [
 		{
-			"id": "17fd94e1-76e4-4a5e-b561-1919173b173f",
 			"key": "ise_pan",
 			"value": "ise.securitydemo.net"
 		},
 		{
-			"id": "d0cf3285-07e7-49e5-8d75-8ffd580a8b30",
 			"key": "port",
 			"value": "9060"
 		},
 		{
-			"id": "89baac53-2062-4182-9b0b-5e728a7505d0",
 			"key": "base_url",
 			"value": "https://{{ise_pan}}:{{port}}"
 		},
 		{
-			"id": "4276f486-779c-4dee-bf8b-7ba3d0229817",
 			"key": "rest_username",
 			"value": "admin"
 		},
 		{
-			"id": "16a719d7-8219-4613-8460-c093ff726345",
 			"key": "rest_password",
 			"value": "C1sco12345"
 		},
 		{
-			"id": "0596922d-dd28-461c-be87-629a9bf474cd",
 			"key": "guestuser_username",
 			"value": "guestapi"
 		},
 		{
-			"id": "b1a10931-5f53-4936-b6c6-8a9898442a07",
 			"key": "guestuser_password",
 			"value": "C1sco12345"
 		}
