@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "dc423460-1017-4c44-9ff4-30a6d2f2ac49",
-		"name": "Cisco_ISE_MNT_APIs",
-		"description": "# Cisco ISE 3.0 MNT REST APIs\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Documentation\nSee the complete documentation for the [Cisco ISE Monitoring REST APIs](https://cs.co/ise-api).\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection uses collection variables that you will want to *update* or *override* with your own environment variables for your ISE deployment.",
+		"_postman_id": "903e85c6-941a-4d5d-ab82-d474ac726834",
+		"name": "Cisco ISE API - MNT",
+		"description": "# Cisco ISE API - MNT\n\nISE Monitoring and Troubleshooting (MnT) API resources up to and including ISE 3.0.\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Documentation\nSee the complete documentation for the [Cisco ISE Monitoring REST APIs](https://cs.co/ise-api).\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection uses collection variables that you will want to *update* or *override* with your own environment variables for your ISE deployment.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
