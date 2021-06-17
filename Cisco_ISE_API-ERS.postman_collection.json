@@ -18641,7 +18641,7 @@
 					]
 				},
 				{
-					"name": "🛑  identitygroup/name/{name}",
+					"name": "identitygroup/name/{name}",
 					"event": [
 						{
 							"listen": "test",
@@ -18698,7 +18698,196 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "identitygroup/name/{name}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Request data format",
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"description": "Response data format",
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ers/config/identitygroup/name/{{name}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ers",
+										"config",
+										"identitygroup",
+										"name",
+										"{{name}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-WebKit-CSP",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "ETag",
+									"value": "\"5F0556048BB192E9945339EA27983055\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 17 Jun 2021 22:20:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"IdentityGroup\": {\n        \"id\": \"add70770-cf3c-11eb-a771-4ae50322d6a4\",\n        \"name\": \"NewGroup\",\n        \"description\": \"New User Group\",\n        \"parent\": \"NAC Group:NAC:IdentityGroups:User Identity Groups\",\n        \"link\": {\n            \"rel\": \"self\",\n            \"href\": \"https://ise.securitydemo.net:9060/ers/config/identitygroup/name/NewGroup\",\n            \"type\": \"application/json\"\n        }\n    }\n}"
+						},
+						{
+							"name": "🛑   400 happens with () in name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Request data format",
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"description": "Response data format",
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/ers/config/identitygroup/name/{{name}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ers",
+										"config",
+										"identitygroup",
+										"name",
+										"{{name}}"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONIDSSO=REMOVE; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; Secure; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "JSESSIONIDSSO=DC3E2D7B12D1503CA05D88885A2EEA20; Path=/; Secure; HttpOnly"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "APPSESSIONID=72A42CB80D454093D3BD8DA0AC2F80FF; Path=/ers; Secure; HttpOnly"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, must-revalidate"
+								},
+								{
+									"key": "Expires",
+									"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 17 Jun 2021 22:23:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Server",
+									"value": ""
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "identitygroup",
@@ -18798,6 +18987,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"IdentityGroup\": {\n        \"id\": \"add70770-cf3c-11eb-a771-4ae50322d6a4\",\n        \"name\": \"NewerGroup\",\n        \"description\": \"Newer User Group\",\n        \"parent\": \"NAC Group:NAC:IdentityGroups:User Identity Groups\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/identitygroup/{{id}}",
 							"host": [
@@ -23011,8 +23204,17 @@
 					]
 				},
 				{
-					"name": "networkdevice : Basic RADIUS & TACACS",
+					"name": "networkdevice : Basic Static RADIUS & TACACS",
 					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
 						{
 							"listen": "test",
 							"script": {
@@ -23031,70 +23233,6 @@
 									"    pm.environment.set(\"id\", uuid);",
 									"    console.log('UUID: '+uuid);",
 									"}"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"// {",
-									"//   \"NetworkDevice\" : {",
-									"//     \"name\" : \"networkDevice1\",",
-									"//     \"description\" : \"networkDevice1\",",
-									"//     \"authenticationSettings\" : {",
-									"//       \"radiusSharedSecret\" : \"aaa\",",
-									"//       \"enableKeyWrap\" : true,",
-									"//       \"dtlsRequired\" : true,",
-									"//       \"keyEncryptionKey\" : \"1234567890123456\",",
-									"//       \"messageAuthenticatorCodeKey\" : \"12345678901234567890\",",
-									"//       \"keyInputFormat\" : \"ASCII\"",
-									"//     },",
-									"//     \"snmpsettings\" : {",
-									"//       \"version\" : \"ONE\",",
-									"//       \"roCommunity\" : \"aaa\",",
-									"//       \"pollingInterval\" : 3600,",
-									"//       \"linkTrapQuery\" : true,",
-									"//       \"macTrapQuery\" : true,",
-									"//       \"originatingPolicyServicesNode\" : \"Auto\"",
-									"//     },",
-									"//     \"trustsecsettings\" : {",
-									"//       \"deviceAuthenticationSettings\" : {",
-									"//         \"sgaDeviceId\" : \"networkDevice1\",",
-									"//         \"sgaDevicePassword\" : \"aaa\"",
-									"//       },",
-									"//       \"sgaNotificationAndUpdates\" : {",
-									"//         \"downloadEnvironmentDataEveryXSeconds\" : 86400,",
-									"//         \"downloadPeerAuthorizationPolicyEveryXSeconds\" : 86400,",
-									"//         \"reAuthenticationEveryXSeconds\" : 86400,",
-									"//         \"downloadSGACLListsEveryXSeconds\" : 86400,",
-									"//         \"otherSGADevicesToTrustThisDevice\" : false,",
-									"//         \"sendConfigurationToDevice\" : false,",
-									"//         \"sendConfigurationToDeviceUsing\" : \"ENABLE_USING_COA\",",
-									"//         \"coaSourceHost\" : \"IseNodeName\"",
-									"//       },",
-									"//       \"deviceConfigurationDeployment\" : {",
-									"//         \"includeWhenDeployingSGTUpdates\" : true,",
-									"//         \"enableModePassword\" : \"aaa\",",
-									"//         \"execModePassword\" : \"aaa\",",
-									"//         \"execModeUsername\" : \"aaa\"",
-									"//       }",
-									"//     },",
-									"//     \"tacacsSettings\" : {",
-									"//       \"sharedSecret\" : \"aaa\",",
-									"//       \"connectModeOptions\" : \"ON_LEGACY\"",
-									"//     },",
-									"//     \"profileName\" : \"Cisco\",",
-									"//     \"coaPort\" : 1700,",
-									"//     \"dtlsDnsName\" : \"ISE213.il.com\",",
-									"//     \"NetworkDeviceIPList\" : [ {",
-									"//       \"ipaddress\" : \"1.1.1.1\",",
-									"//       \"mask\" : 32",
-									"//     } ],",
-									"//     \"NetworkDeviceGroupList\" : [ \"Location#All Locations\", \"Device Type#All Device Types\" ]",
-									"//   }",
-									"// }"
 								],
 								"type": "text/javascript"
 							}
@@ -23138,7 +23276,7 @@
 					"response": []
 				},
 				{
-					"name": "networkdevice : Detailed RADIUS & TACACS",
+					"name": "networkdevice : Basic Scripted RADIUS & TACACS",
 					"event": [
 						{
 							"listen": "test",
@@ -23166,62 +23304,97 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"// {",
-									"//   \"NetworkDevice\" : {",
-									"//     \"name\" : \"networkDevice1\",",
-									"//     \"description\" : \"networkDevice1\",",
-									"//     \"authenticationSettings\" : {",
-									"//       \"radiusSharedSecret\" : \"aaa\",",
-									"//       \"enableKeyWrap\" : true,",
-									"//       \"dtlsRequired\" : true,",
-									"//       \"keyEncryptionKey\" : \"1234567890123456\",",
-									"//       \"messageAuthenticatorCodeKey\" : \"12345678901234567890\",",
-									"//       \"keyInputFormat\" : \"ASCII\"",
-									"//     },",
-									"//     \"snmpsettings\" : {",
-									"//       \"version\" : \"ONE\",",
-									"//       \"roCommunity\" : \"aaa\",",
-									"//       \"pollingInterval\" : 3600,",
-									"//       \"linkTrapQuery\" : true,",
-									"//       \"macTrapQuery\" : true,",
-									"//       \"originatingPolicyServicesNode\" : \"Auto\"",
-									"//     },",
-									"//     \"trustsecsettings\" : {",
-									"//       \"deviceAuthenticationSettings\" : {",
-									"//         \"sgaDeviceId\" : \"networkDevice1\",",
-									"//         \"sgaDevicePassword\" : \"aaa\"",
-									"//       },",
-									"//       \"sgaNotificationAndUpdates\" : {",
-									"//         \"downloadEnvironmentDataEveryXSeconds\" : 86400,",
-									"//         \"downloadPeerAuthorizationPolicyEveryXSeconds\" : 86400,",
-									"//         \"reAuthenticationEveryXSeconds\" : 86400,",
-									"//         \"downloadSGACLListsEveryXSeconds\" : 86400,",
-									"//         \"otherSGADevicesToTrustThisDevice\" : false,",
-									"//         \"sendConfigurationToDevice\" : false,",
-									"//         \"sendConfigurationToDeviceUsing\" : \"ENABLE_USING_COA\",",
-									"//         \"coaSourceHost\" : \"IseNodeName\"",
-									"//       },",
-									"//       \"deviceConfigurationDeployment\" : {",
-									"//         \"includeWhenDeployingSGTUpdates\" : true,",
-									"//         \"enableModePassword\" : \"aaa\",",
-									"//         \"execModePassword\" : \"aaa\",",
-									"//         \"execModeUsername\" : \"aaa\"",
-									"//       }",
-									"//     },",
-									"//     \"tacacsSettings\" : {",
-									"//       \"sharedSecret\" : \"aaa\",",
-									"//       \"connectModeOptions\" : \"ON_LEGACY\"",
-									"//     },",
-									"//     \"profileName\" : \"Cisco\",",
-									"//     \"coaPort\" : 1700,",
-									"//     \"dtlsDnsName\" : \"ISE213.il.com\",",
-									"//     \"NetworkDeviceIPList\" : [ {",
-									"//       \"ipaddress\" : \"1.1.1.1\",",
-									"//       \"mask\" : 32",
-									"//     } ],",
-									"//     \"NetworkDeviceGroupList\" : [ \"Location#All Locations\", \"Device Type#All Device Types\" ]",
-									"//   }",
-									"// }"
+									"defaults = {",
+									"    'name': 'nad',",
+									"    'description': 'description',",
+									"    'radius_secret': 'C1sco12345',",
+									"    'tacacs_secret': 'C1sco12345',",
+									"    'nad_ipv4': '1.2.3.4',",
+									"    'ndg_list': '\"'+ [",
+									"            \"Location#All Locations\",",
+									"            \"IPSEC#Is IPSEC Device#No\",",
+									"            \"Device Type#All Device Types\"",
+									"        ].join('\",\"')+'\"'",
+									"}",
+									"",
+									"// set default values above",
+									"for (let key in defaults) {",
+									"    if (! pm.variables.get(key)) { ",
+									"        pm.variables.set(key, defaults[key]); ",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "Request data format",
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Response data format",
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"NetworkDevice\": {\n        \"name\": \"{{name}}\",\n        \"description\": \"{{description}}\",\n        \"authenticationSettings\": {\n            \"networkProtocol\": \"RADIUS\",\n            \"radiusSharedSecret\": \"{{radius_secret}}\"\n        },\n        \"tacacsSettings\": {\n            \"sharedSecret\": \"{{tacacs_secret}}\",\n            \"connectModeOptions\": \"OFF\"\n        },\n        \"NetworkDeviceIPList\": [\n            {\n                \"ipaddress\": \"{{nad_ipv4}}\",\n                \"mask\": 32\n            }\n        ],\n        \"NetworkDeviceGroupList\": [\n            {{ndg_list}}\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/ers/config/networkdevice",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"ers",
+								"config",
+								"networkdevice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "networkdevice : Detailed Static RADIUS & TACACS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"function get_id_from_location (location) {",
+									"    splits = location.split('/');",
+									"    return splits[splits.length - 1]",
+									"}",
+									"location = pm.response.headers.get('Location');",
+									"if (location) {",
+									"    uuid = get_id_from_location(location);",
+									"    pm.environment.set(\"id\", uuid);",
+									"    console.log('UUID: '+uuid);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -24356,7 +24529,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"NetworkDeviceGroup\": {\n    \"name\": \"Device Type#All Device Types#SDWAN\",\n    \"description\": \"...\",\n    \"othername\": \"Device Type\"\n  }\n}"
+							"raw": "{\n  \"NetworkDeviceGroup\": {\n    \"name\": \"Device Type#All Device Types#Wireless\",\n    \"description\": \"Wireless\",\n    \"othername\": \"Device Type\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/networkdevicegroup",
@@ -24419,7 +24592,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"NetworkDeviceGroup\": {\n    \"name\": \"Location#All Locations#SNG\",\n    \"description\": \"...\",\n    \"othername\": \"Location\"\n  }\n}"
+							"raw": "{\n  \"NetworkDeviceGroup\": {\n    \"name\": \"Location#All Locations#SJC\",\n    \"description\": \"SJC\",\n    \"othername\": \"Location\"\n  }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/networkdevicegroup",
