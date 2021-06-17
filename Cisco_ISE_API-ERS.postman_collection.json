@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2336c7c0-5e3f-42cd-b10f-49789c9bb474",
+		"_postman_id": "81ef1a04-eb98-4219-9e2d-64a65e1ee2a1",
 		"name": "Cisco ISE API - ERS",
 		"description": "# Cisco ISE API - ERS\n\nISE External RESTful Services (ERS) API resources up to and including ISE 3.0.\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status Icons\nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pan`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`\nIf you want to manipulate the `guestuser` resource(s) you will also need to use a separate sponsor account specified with:\n- `guestuser_username`: Default: `guestapi`\n- `guestuser_password`: Default: `C1sco12345`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -355,6 +355,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"AciSettings\": {\n        \"id\": \"872c4e3f-8b3f-4462-98ba-00519a033cce\",\n        \"enableAci\": false,\n        \"ipAddressHostName\": \"10.0.0.1\",\n        \"adminName\": \"admin\",\n        \"tenantName\": \"ISE\",\n        \"l3RouteNetwork\": \"L3_ROUTE\",\n        \"suffixToEpg\": \"SGT\",\n        \"suffixToSgt\": \"EPG\",\n        \"allSxpDomain\": false,\n        \"specificSxpDomain\": true,\n        \"specifixSxpDomainList\": [\n            \"default\"\n        ],\n        \"enableDataPlane\": false,\n        \"untaggedPacketIepgName\": \"Untagged\",\n        \"defaultSgtName\": \"Unknown\",\n        \"enableElementsLimit\": true,\n        \"maxNumIepgFromAci\": 1000,\n        \"maxNumSgtToAci\": 500,\n        \"aci50\": false,\n        \"aci51\": false\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/acisettings/{{id}}",
 							"host": [
@@ -1605,7 +1609,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ERSActiveDirectory\": {\n        \"id\": \"{{id}}\",\n        \"name\": \"{{ad_domain_name}}\",\n        \"description\": \"\",\n        \"domain\": \"{{ad_domain_name}}\"\n    }\n}"
+							"raw": "{\n    \"ERSActiveDirectory\": {\n        \"id\": \"{{id}}\",\n        \"name\": \"{{ad_domain_name}}\",\n        \"description\": \"\",\n        \"domain\": \"{{ad_domain_name}}\",\n        \"adgroups\": {\n            \"groups\": [\n                {\n                    \"name\": \"dcloud.cisco.com/Users/Domain Computers\",\n                    \"sid\": \"S-1-5-21-3064548688-3193819538-1298560677-515\",\n                    \"type\": \"GLOBAL\"\n                },\n                {\n                    \"name\": \"dcloud.cisco.com/Users/Domain Users\",\n                    \"sid\": \"S-1-5-21-3064548688-3193819538-1298560677-513\",\n                    \"type\": \"GLOBAL\"\n                }\n            ]\n        }\n    }\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/activedirectory/{{id}}/addGroups",
@@ -9355,7 +9359,7 @@
 					]
 				},
 				{
-					"name": "🚧 egressmatrixcell",
+					"name": "egressmatrixcell",
 					"event": [
 						{
 							"listen": "test",
@@ -9400,6 +9404,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EgressMatrixCell\": {\n        \"name\": \"BYOD x BYOD\",\n        \"description\": \"BYOD x BYOD\",\n        \"sourceSgtId\": \"935d4cc0-8c01-11e6-996c-525400b48521\",\n        \"destinationSgtId\": \"935d4cc0-8c01-11e6-996c-525400b48521\",\n        \"matrixCellStatus\": \"ENABLED\",\n        \"sgacls\": [\n            \"313f1220-cf37-11eb-a771-4ae50322d6a4\"\n        ]\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/egressmatrixcell",
 							"host": [
@@ -9415,7 +9423,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 egressmatrixcell/{id}",
+					"name": "egressmatrixcell/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -9449,6 +9457,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EgressMatrixCell\": {\n        \"id\": \"dfe3a0c0-cf37-11eb-a771-4ae50322d6a4\",\n        \"name\": \"BYODxBYOD\",\n        \"description\": \"BYODxBYOD\",\n        \"sourceSgtId\": \"935d4cc0-8c01-11e6-996c-525400b48521\",\n        \"destinationSgtId\": \"935d4cc0-8c01-11e6-996c-525400b48521\",\n        \"matrixCellStatus\": \"ENABLED\",\n        \"defaultRule\": \"NONE\",\n        \"sgacls\": [\n            \"313f1220-cf37-11eb-a771-4ae50322d6a4\"\n        ]\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/egressmatrixcell/{{id}}",
 							"host": [
@@ -9465,7 +9477,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 egressmatrixcell/clearallmatrixcells",
+					"name": "egressmatrixcell/clearallmatrixcells",
 					"event": [
 						{
 							"listen": "test",
@@ -9515,7 +9527,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 egressmatrixcell/status/{status}",
+					"name": "egressmatrixcell/status/{status}",
 					"event": [
 						{
 							"listen": "test",
@@ -9561,7 +9573,8 @@
 								"status",
 								"{{status}}"
 							]
-						}
+						},
+						"description": "Sets all cells' status.\n\nValid status values: ENABLE | DISABLE | MONITOR"
 					},
 					"response": []
 				},
@@ -12088,7 +12101,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 endpointgroup/{id}",
+					"name": "endpointgroup/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -12122,6 +12135,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"EndPointGroup\": {\n        \"id\": \"059bc700-cf3a-11eb-a771-4ae50322d6a4\",\n        \"name\": \"MyEndpointGroup\",\n        \"description\": \"New Description\",\n        \"systemDefined\": false\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/endpointgroup/{{id}}",
 							"host": [
@@ -14283,7 +14300,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 guestssid",
+					"name": "guestssid",
 					"event": [
 						{
 							"listen": "test",
@@ -14327,6 +14344,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestSSID\": {\n        \"name\": \"NewGuestSSID\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestssid",
 							"host": [
@@ -14342,7 +14363,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 guestssid/{id}",
+					"name": "guestssid/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -14376,6 +14397,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestSSID\": {\n        \"id\": \"5f0639c6-3823-4320-9f2a-ff594ba86d9c\",\n        \"name\": \"NewerGuestSSID\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guestssid/{{id}}",
 							"host": [
@@ -14392,7 +14417,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 guestssid/{id}",
+					"name": "guestssid/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -15153,7 +15178,7 @@
 					]
 				},
 				{
-					"name": "🚧 guesttype",
+					"name": "guesttype",
 					"event": [
 						{
 							"listen": "test",
@@ -15197,6 +15222,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestType\": {\n        \"name\": \"MyNewGuestType\",\n        \"description\": \"MyNewGuestType\",\n        \"isDefaultType\": true,\n        \"accessTime\": {\n            \"fromFirstLogin\": false,\n            \"maxAccountDuration\": 365,\n            \"durationTimeUnit\": \"DAYS\",\n            \"defaultDuration\": 90,\n            \"allowAccessOnSpecificDaysTimes\": false,\n            \"dayTimeLimits\": [\n                {\n                    \"startTime\": \"09:00\",\n                    \"endTime\": \"17:00\",\n                    \"days\": [\n                        \"Monday\",\n                        \"Tuesday\",\n                        \"Wednesday\",\n                        \"Thursday\",\n                        \"Friday\"\n                    ]\n                }\n            ]\n        },\n        \"loginOptions\": {\n            \"limitSimultaneousLogins\": true,\n            \"maxSimultaneousLogins\": 3,\n            \"failureAction\": \"Disconnect_Oldest_Connection\",\n            \"maxRegisteredDevices\": 5,\n            \"identityGroupId\": \"aa178bd0-8bff-11e6-996c-525400b48521\",\n            \"allowGuestPortalBypass\": false\n        },\n        \"expirationNotification\": {\n            \"enableNotification\": false,\n            \"advanceNotificationDuration\": 3,\n            \"advanceNotificationUnits\": \"DAYS\",\n            \"sendEmailNotification\": false,\n            \"emailText\": \"Your account is going to expire in 3 days. Please notify your sponsor to extend your account now to avoid any delays.\",\n            \"sendSmsNotification\": false,\n            \"smsText\": \"Your account is going to expire in 3 days. Please notify your sponsor to extend your account now to avoid any delays.\"\n        },\n        \"sponsorGroups\": [\n            \"GROUP_ACCOUNTS (default)\",\n            \"ALL_ACCOUNTS (default)\",\n            \"OWN_ACCOUNTS (default)\"\n        ]\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guesttype",
 							"host": [
@@ -15212,7 +15241,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 guesttype/{id}",
+					"name": "guesttype/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -15246,6 +15275,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"GuestType\": {\n        \"id\": \"1bcc636a-b06f-4141-af92-1cdf19c25a4c\",\n        \"name\": \"MyNewerGuestType\",\n        \"description\": \"MyNewerGuestType\",\n        \"isDefaultType\": false,\n        \"accessTime\": {\n            \"fromFirstLogin\": false,\n            \"maxAccountDuration\": 365,\n            \"durationTimeUnit\": \"DAYS\",\n            \"defaultDuration\": 90,\n            \"allowAccessOnSpecificDaysTimes\": false,\n            \"dayTimeLimits\": [\n                {\n                    \"startTime\": \"09:00\",\n                    \"endTime\": \"17:00\",\n                    \"days\": [\n                        \"Monday\",\n                        \"Tuesday\",\n                        \"Wednesday\",\n                        \"Thursday\",\n                        \"Friday\"\n                    ]\n                }\n            ]\n        },\n        \"loginOptions\": {\n            \"limitSimultaneousLogins\": true,\n            \"maxSimultaneousLogins\": 3,\n            \"failureAction\": \"Disconnect_Oldest_Connection\",\n            \"maxRegisteredDevices\": 5,\n            \"identityGroupId\": \"aa178bd0-8bff-11e6-996c-525400b48521\",\n            \"allowGuestPortalBypass\": false\n        },\n        \"expirationNotification\": {\n            \"enableNotification\": false,\n            \"advanceNotificationDuration\": 3,\n            \"advanceNotificationUnits\": \"DAYS\",\n            \"sendEmailNotification\": false,\n            \"emailText\": \"Your account is going to expire in 3 days. Please notify your sponsor to extend your account now to avoid any delays.\",\n            \"sendSmsNotification\": false,\n            \"smsText\": \"Your account is going to expire in 3 days. Please notify your sponsor to extend your account now to avoid any delays.\"\n        },\n        \"sponsorGroups\": [\n            \"GROUP_ACCOUNTS (default)\",\n            \"ALL_ACCOUNTS (default)\",\n            \"OWN_ACCOUNTS (default)\"\n        ]\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/guesttype/{{id}}",
 							"host": [
@@ -15418,7 +15451,7 @@
 			"name": "GuestUser",
 			"item": [
 				{
-					"name": "✅  guestuser (⚠ requires sponsor)",
+					"name": "guestuser (⚠ requires sponsor)",
 					"event": [
 						{
 							"listen": "test",
@@ -15755,7 +15788,7 @@
 					]
 				},
 				{
-					"name": "✅  guestuser/{id}",
+					"name": "guestuser/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -15922,7 +15955,7 @@
 					]
 				},
 				{
-					"name": "✅  guestuser/name/{name}",
+					"name": "guestuser/name/{name}",
 					"event": [
 						{
 							"listen": "test",
@@ -16116,7 +16149,7 @@
 					]
 				},
 				{
-					"name": "✅  guestuser: thomas",
+					"name": "guestuser: thomas",
 					"event": [
 						{
 							"listen": "test",
@@ -16223,7 +16256,7 @@
 					"response": []
 				},
 				{
-					"name": "✅  guestuser: 1homas",
+					"name": "guestuser: 1homas",
 					"event": [
 						{
 							"listen": "test",
@@ -16330,7 +16363,7 @@
 					"response": []
 				},
 				{
-					"name": "✅  guestuser Daily/random",
+					"name": "guestuser Daily/random",
 					"event": [
 						{
 							"listen": "test",
@@ -18668,7 +18701,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 identitygroup",
+					"name": "identitygroup",
 					"event": [
 						{
 							"listen": "test",
@@ -18712,6 +18745,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"IdentityGroup\": {\n        \"name\": \"NewGroup\",\n        \"description\": \"New User Group\",\n        \"parent\": \"NAC Group:NAC:IdentityGroups:User Identity Groups\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/identitygroup",
 							"host": [
@@ -18727,7 +18764,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 identitygroup/{id}",
+					"name": "identitygroup/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -31723,7 +31760,7 @@
 					]
 				},
 				{
-					"name": "🚧 sgacl",
+					"name": "sgacl: Block_Malware",
 					"event": [
 						{
 							"listen": "test",
@@ -31767,6 +31804,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Sgacl\": {\n        \"name\": \"Block_Malware\",\n        \"description\": \"Prevent malware spreading on SMB and prevent acting as server for common network services like DNS, DHCP, Email, HTTPS, etc.\",\n        \"aclcontent\": \"deny icmp\\ndeny udp src dst eq domain\\ndeny tcp src dst eq 3389\\ndeny tcp src dst eq 1433\\ndeny tcp src dst eq 1521\\ndeny tcp src dst eq 445\\ndeny tcp src dst eq 137\\ndeny tcp src dst eq 138\\ndeny tcp src dst eq 139\\ndeny udp src dst eq snmp\\ndeny tcp src dst eq telnet\\ndeny tcp src dst eq www\\ndeny tcp src dst eq 443\\ndeny tcp src dst eq 22\\ndeny tcp src dst eq pop3\\ndeny tcp src dst eq 123\\npermit ip\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/sgacl",
 							"host": [
@@ -31782,7 +31823,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 sgacl/{id}",
+					"name": "sgacl/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -31816,6 +31857,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Sgacl\": {\n        \"id\": \"7beada50-cf34-11eb-a771-4ae50322d6a4\",\n        \"name\": \"Block_Malware\",\n        \"description\": \"Prevent malware from spreading on SMB and prevent acting as server for common network services like DNS, DHCP, Email, HTTPS, etc.\",\n        \"ipVersion\": \"IPV4\",\n        \"aclcontent\": \"deny icmp\\ndeny udp src dst eq domain\\ndeny tcp src dst eq 3389\\ndeny tcp src dst eq 1433\\ndeny tcp src dst eq 1521\\ndeny tcp src dst eq 445\\ndeny tcp src dst eq 137\\ndeny tcp src dst eq 138\\ndeny tcp src dst eq 139\\ndeny udp src dst eq snmp\\ndeny tcp src dst eq telnet\\ndeny tcp src dst eq www\\ndeny tcp src dst eq 443\\ndeny tcp src dst eq 22\\ndeny tcp src dst eq pop3\\ndeny tcp src dst eq 123\\npermit ip\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/sgacl/{{id}}",
 							"host": [
@@ -31832,7 +31877,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 sgacl/{id}",
+					"name": "sgacl/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -32680,7 +32725,7 @@
 					"response": []
 				},
 				{
-					"name": "🚧 sgt/{id}",
+					"name": "sgt/{id}",
 					"event": [
 						{
 							"listen": "test",
@@ -32714,6 +32759,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Sgt\": {\n        \"id\": \"4d98a844-c050-4438-8873-2de3c17e3ce0\",\n        \"name\": \"My_New_SGT_Name\",\n        \"description\": \"And new description\",\n        \"value\": 9,\n        \"generationId\": \"0\",\n        \"propogateToApic\": true,\n        \"link\": {\n            \"rel\": \"self\",\n            \"href\": \"https://ise.securitydemo.net:9060/ers/config/sgt/4d98a844-c050-4438-8873-2de3c17e3ce0\",\n            \"type\": \"application/json\"\n        }\n    }\n}"
+						},
 						"url": {
 							"raw": "{{base_url}}/ers/config/sgt/{{id}}",
 							"host": [
