@@ -24,9 +24,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveCount",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -57,9 +57,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveCount",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -152,9 +152,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveCount",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveCount",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -235,9 +235,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/PostureCount",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/PostureCount",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -262,9 +262,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/PostureCount",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/PostureCount",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -345,9 +345,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/ProfilerCount",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -372,9 +372,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ProfilerCount",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -453,9 +453,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ProfilerCount",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ProfilerCount",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -536,9 +536,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveList",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -563,9 +563,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveList",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -644,9 +644,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/ActiveList",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/ActiveList",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -727,9 +727,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/{{start_time}}/{{end_time}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/AuthList/{{start_time}}/{{end_time}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -756,9 +756,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/null/null",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/AuthList/null/null",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -839,9 +839,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/AuthList/null/null",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/AuthList/null/null",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -924,9 +924,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/MACAddress/{{mac}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -952,9 +952,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/MACAddress/{{mac}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1034,9 +1034,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/MACAddress/{{mac}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/MACAddress/{{mac}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1126,9 +1126,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/UserName/{{username}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/UserName/{{username}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1154,9 +1154,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/UserName/{{username}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/UserName/{{username}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1246,9 +1246,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1274,9 +1274,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/IPAddress/{{nas_ip}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1366,9 +1366,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1394,9 +1394,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/EndPointIPAddress/{{endpoint_ip}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1486,9 +1486,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1516,9 +1516,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/Active/SessionID/{{session_id}}/0",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1602,9 +1602,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Session/Delete/All",
+					"raw": "{{baseUrl}}/admin/API/mnt/Session/Delete/All",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1629,9 +1629,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Session/Delete/All",
+							"raw": "{{baseUrl}}/admin/API/mnt/Session/Delete/All",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1713,9 +1713,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/Version",
+					"raw": "{{baseUrl}}/admin/API/mnt/Version",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1739,9 +1739,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/Version",
+							"raw": "{{baseUrl}}/admin/API/mnt/Version",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1829,9 +1829,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/FailureReasons",
+					"raw": "{{baseUrl}}/admin/API/mnt/FailureReasons",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1855,9 +1855,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
+					"raw": "{{baseUrl}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -1885,9 +1885,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
+							"raw": "{{baseUrl}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -1970,9 +1970,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
+							"raw": "{{baseUrl}}/admin/API/mnt/AuthStatus/MACAddress/{{mac}}/{{seconds}}/{{records}}/All",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2065,9 +2065,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -2095,9 +2095,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2179,9 +2179,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/CoA/Reauth/{{psn_name}}/{{mac}}/{{reauth_type}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2265,9 +2265,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -2297,9 +2297,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}/{{nas_ip}}/{{endpoint_ip}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2385,9 +2385,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/CoA/Disconnect/{{psn_name}}/{{mac}}/{{disconnect_type}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -2415,9 +2415,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/0",
+							"raw": "{{baseUrl}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/0",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2499,9 +2499,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/1",
+							"raw": "{{baseUrl}}/admin/API/mnt/CoA/Disconnect/ise/98:10:E8:14:7A:67/1",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2585,9 +2585,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
+					"raw": "{{baseUrl}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"admin",
@@ -2614,9 +2614,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
+							"raw": "{{baseUrl}}/admin/API/mnt/AcctStatus/MACAddress/{{mac}}/{{seconds}}",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"admin",
@@ -2725,12 +2725,12 @@
 	],
 	"variable": [
 		{
-			"key": "ise_mnt",
+			"key": "server",
 			"value": "ise.securitydemo.net"
 		},
 		{
-			"key": "base_url",
-			"value": "https://{{ise_mnt}}"
+			"key": "baseUrl",
+			"value": "https://{{server}}"
 		},
 		{
 			"key": "rest_username",
