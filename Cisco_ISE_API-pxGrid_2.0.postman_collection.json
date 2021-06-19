@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "dbf72b6c-5af1-4ffa-9168-e0986d39dc27",
 		"name": "Cisco ISE API - pxGrid 2.0",
-		"description": "# Cisco ISE API - pxGrid 2.0\n\nCreated from the official Cisco pxGrid 2.0 API documentation at <https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki>\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `ise_pxg`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
+		"description": "# Cisco ISE API - pxGrid 2.0\n\nCreated from the official Cisco pxGrid 2.0 API documentation at <https://github.com/cisco-pxgrid/pxgrid-rest-ws/wiki>\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status  \nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `server`: the ISE pxGrid (PXG) node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1206,9 +1206,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base_url}}/pxgrid/ise/radius/getFailures",
+							"raw": "{{baseUrl}}/pxgrid/ise/radius/getFailures",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"pxgrid",
@@ -1326,9 +1326,9 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{base_url}}/pxgrid/ise/radius/getFailures",
+							"raw": "{{baseUrl}}/pxgrid/ise/radius/getFailures",
 							"host": [
-								"{{base_url}}"
+								"{{baseUrl}}"
 							],
 							"path": [
 								"pxgrid",
@@ -2543,7 +2543,7 @@
 	],
 	"variable": [
 		{
-			"key": "ise_pxg",
+			"key": "server",
 			"value": "ise.securitydemo.net"
 		},
 		{
@@ -2552,7 +2552,7 @@
 		},
 		{
 			"key": "baseUrl",
-			"value": "https://{{ise_pxg}}:{{port}}"
+			"value": "https://{{server}}:{{port}}"
 		},
 		{
 			"key": "rest_username",
