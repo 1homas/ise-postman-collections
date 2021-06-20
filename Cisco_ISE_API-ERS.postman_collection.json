@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "81ef1a04-eb98-4219-9e2d-64a65e1ee2a1",
+		"_postman_id": "0b0986ae-ec5d-4d66-996a-58be317d4d30",
 		"name": "Cisco ISE API - ERS",
 		"description": "# Cisco ISE API - ERS\n\nISE External RESTful Services (ERS) API resources up to and including ISE 3.0.\n\n## License\n[Cisco Sample Code License](https://developer.cisco.com/site/license/cisco-sample-code-license/)\n\n## Status Icons\nThese are the status icons for the requests so far.\n- ⌗ : must create resources to test  \n- 🚧 : incomplete | untested\n- 🛑 : unsupported | bug\n\n## Environment Variables\nThis collection uses environment variables in scripts in the **Tests** tab to store data (`id`, `name`, `portalId`, etc.)  between requests. This allows you to `GET` or `POST` then immediately `GET {id}` on a resource. Using **No Environment** will cause this convenience functionality to fail so be sure to choose one.\n\n\n## Collection Variables \nThis collection includes some default variables that you will want to update or override with environment variables for your ISE deployment. Specifically, you will want to set: \n- `server`: the ISE PAN node name or IP address. Default: `ise.securitydemo.net`\n- `rest_username`: the username for ERS API access. Must be a member of **SuperAdmin**, **ERSAdmin** or **ERSOperator** groups. Default: `admin` which is the ISE SuperAdmin\n- `rest_password`: Default: `C1sco12345`\nIf you want to manipulate the `guestuser` resource(s) you will also need to use a separate sponsor account specified with:\n- `guestuser_username`: Default: `guestapi`\n- `guestuser_password`: Default: `C1sco12345`",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -8848,7 +8848,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"DownloadableAcl\" : {\n    \"name\" : \"MyDACL6\",\n    \"description\" : \"MyDACL\",\n    \"dacl\" : \"permit ip any any\",\n    \"daclType\" : \"IPV4\"\n  }\n}"
+							"raw": "{\n    \"DownloadableAcl\": {\n        \"name\": \"Internet_Only\",\n        \"description\": \"Block private, internal address ranges and allow the rest of the Internet\",\n        \"dacl\": \"deny ip any 10.0.0.0 0.255.255.255\\ndeny ip any 172.16.0.0 0.15.255.255\\ndeny ip any 192.168.0.0 0.0.255.255\\npermit ip any any\",\n        \"daclType\": \"IP_AGNOSTIC\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/downloadableacl",
@@ -8901,7 +8901,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"DownloadableAcl\" : {\n    \"name\" : \"MyDACL6\",\n    \"description\" : \"MyDACL6\",\n    \"dacl\" : \"deny ip any any\",\n    \"daclType\" : \"IPV4\"\n  }\n}"
+							"raw": "{\n    \"DownloadableAcl\": {\n        \"id\": \"f2801d30-d185-11eb-b156-ce78cd88a6c2\",\n        \"name\": \"Internet_Only\",\n        \"description\": \"Block private, internal address ranges\",\n        \"dacl\": \"deny ip any 10.0.0.0 0.255.255.255\\ndeny ip any 172.16.0.0 0.15.255.255\\ndeny ip any 192.168.0.0 0.0.255.255\\npermit ip any any\",\n        \"daclType\": \"IP_AGNOSTIC\"\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/downloadableacl/{{id}}",
@@ -10793,7 +10793,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"ERSEndPoint\" : {\n    \"name\" : \"MyEndpoint\",\n    \"description\" : \"MyEndpoint\",\n    \"mac\" : \"11:22:33:44:55:66\",\n    \"groupId\" : \"1e2700a0-8c00-11e6-996c-525400b48521\",\n    \"staticGroupAssignment\" : true,\n    \"customAttributes\": {\n        \"customAttributes\" : {\n            \"Authorization\": \"Internet\",\n            \"Owner\": \"thomas\",\n            \"Department\": \"Eng\",\n            \"Model\": \"1111\",\n            \"Manufacturer\": \"Cisco\",\n            \"iPSK\": \"abc123\",\n            \"Created\": 1234567890,\n            \"Expired\": 2134567890\n        }\n    }\n  }\n}"
+							"raw": "{\n    \"ERSEndPoint\": {\n        \"name\": \"Thomas-AP9130\",\n        \"description\": \"AP for ISE Demo\",\n        \"mac\": \"11:22:33:44:55:66\",\n        \"groupId\": \"aa13bb40-8bff-11e6-996c-525400b48521\",\n        \"staticGroupAssignment\": true,\n        \"customAttributes\": {\n            \"customAttributes\": {\n                \"Manufacturer\": \"Cisco\",\n                \"Model\": \"C9130\",\n                \"OS\": \"IOS-XE 16.12\",\n                \"Department\": \"TME\",\n                \"DeviceType\": \"AP\",\n                \"Owner\": \"thomas\",\n                \"Where\": \"SJC\",\n                \"Authorization\": \"Internet_Only\",\n                \"Reason\": \"Demo\",\n                \"Created\": 1234567890,\n                \"Expires\": 2134567890\n            }\n        }\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/endpoint",
@@ -10847,6 +10847,60 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"ERSEndPoint\" : {\n    \"description\" : \"a new description\",\n    \"groupId\" : \"3a1b38d0-8c00-11e6-996c-525400b48521\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ers/config/endpoint/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ers",
+								"config",
+								"endpoint",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endpoint/{id} + custom attributes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"description": "Request data format",
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "Response data format",
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ERSEndPoint\": {\n        \"id\": \"f0c080f0-d187-11eb-b156-ce78cd88a6c2\",\n        \"name\": \"Thomas-AP9130\",\n        \"description\": \"AP for ISE Demo\",\n        \"mac\": \"11:22:33:44:55:66\",\n        \"profileId\": \"\",\n        \"staticProfileAssignment\": false,\n        \"staticProfileAssignmentDefined\": true,\n        \"groupId\": \"aa13bb40-8bff-11e6-996c-525400b48521\",\n        \"staticGroupAssignment\": true,\n        \"staticGroupAssignmentDefined\": true,\n        \"portalUser\": \"\",\n        \"identityStore\": \"\",\n        \"identityStoreId\": \"\",\n        \"customAttributes\": {\n            \"customAttributes\": {\n                \"Manufacturer\": \"Cisco\",\n                \"Model\": \"C9130A\",\n                \"OS\": \"IOS-XE 16.12\",\n                \"Department\": \"TME\",\n                \"DeviceType\": \"AP\",\n                \"Owner\": \"thomas\",\n                \"Where\": \"SJC\",\n                \"Authorization\": \"Internet_Only\",\n                \"Reason\": \"Demo\",\n                \"Created\": 1234567890,\n                \"Expires\": 2134567890\n            }\n        }\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/endpoint/{{id}}",
@@ -12137,7 +12191,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"EndPointGroup\": {\n        \"id\": \"059bc700-cf3a-11eb-a771-4ae50322d6a4\",\n        \"name\": \"MyEndpointGroup\",\n        \"description\": \"New Description\",\n        \"systemDefined\": false\n    }\n}"
+							"raw": "{\n    \"EndPointGroup\": {\n        \"id\": \"{{id}}\",\n        \"name\": \"MyEndpointGroup\",\n        \"description\": \"New Description\",\n        \"systemDefined\": false\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/endpointgroup/{{id}}",
@@ -18885,7 +18939,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
