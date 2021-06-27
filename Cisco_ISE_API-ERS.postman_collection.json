@@ -36452,7 +36452,7 @@
 					]
 				},
 				{
-					"name": "🚧 sponsorgroup",
+					"name": "sponsorgroup",
 					"event": [
 						{
 							"listen": "test",
@@ -36460,7 +36460,18 @@
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
-									"});"
+									"});",
+									"",
+									"function get_id_from_location (location) {",
+									"    splits = location.split('/');",
+									"    return splits[splits.length - 1]",
+									"}",
+									"location = pm.response.headers.get('Location');",
+									"if (location) {",
+									"    uuid = get_id_from_location(location);",
+									"    pm.environment.set(\"id\", uuid);",
+									"    console.log('UUID: '+uuid);",
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -36485,6 +36496,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"SponsorGroup\": {\n        \"name\": \"NewSponsorGroup\",\n        \"description\": \"New Sponsor Group\",\n        \"isEnabled\": true,\n        \"isDefaultGroup\": false,\n        \"memberGroups\": [],\n        \"guestTypes\": [\n            \"Daily (default)\"\n        ],\n        \"locations\": [],\n        \"autoNotification\": false,\n        \"createPermissions\": {\n            \"canImportMultipleAccounts\": true,\n            \"importBatchSizeLimit\": 200,\n            \"canCreateRandomAccounts\": true,\n            \"randomBatchSizeLimit\": 200,\n            \"canSpecifyUsernamePrefix\": true,\n            \"canSetFutureStartDate\": false,\n            \"startDateFutureLimitDays\": 1\n        },\n        \"managePermission\": \"ALLACCOUNTS\",\n        \"otherPermissions\": {\n            \"canUpdateGuestContactInfo\": true,\n            \"canViewGuestPasswords\": true,\n            \"canSendSmsNotifications\": false,\n            \"canResetGuestPasswords\": true,\n            \"canExtendGuestAccounts\": true,\n            \"canDeleteGuestAccounts\": true,\n            \"canSuspendGuestAccounts\": true,\n            \"requireSuspensionReason\": false,\n            \"canReinstateSuspendedAccounts\": true,\n            \"canApproveSelfregGuests\": true,\n            \"limitApprovalToSponsorsGuests\": false,\n            \"canAccessViaRest\": false\n        }\n    }\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/sponsorgroup",
 							"host": [
@@ -36500,16 +36515,26 @@
 					"response": []
 				},
 				{
-					"name": "🚧 sponsorgroup/{id}",
+					"name": "sponsorgroup/{id}",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
 									"});",
-									""
+									"",
+									"function get_id_from_location (location) {",
+									"    splits = location.split('/');",
+									"    return splits[splits.length - 1]",
+									"}",
+									"location = pm.response.headers.get('Location');",
+									"if (location) {",
+									"    uuid = get_id_from_location(location);",
+									"    pm.environment.set(\"id\", uuid);",
+									"    console.log('UUID: '+uuid);",
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -36534,6 +36559,10 @@
 								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"SponsorGroup\": {\n        \"id\": \"4bb5ade6-9c53-4c0f-959f-db4952923d94\",\n        \"name\": \"NewSponsorGroup\",\n        \"description\": \"Updated description\",\n        \"isEnabled\": true,\n        \"isDefaultGroup\": false,\n        \"memberGroups\": [\n            \"ALL_ACCOUNTS (default)\"\n        ],\n        \"guestTypes\": [\n            \"Daily (default)\"\n        ],\n        \"locations\": [\n            \"San Jose\"\n        ],\n        \"autoNotification\": false,\n        \"createPermissions\": {\n            \"canImportMultipleAccounts\": true,\n            \"importBatchSizeLimit\": 200,\n            \"canCreateRandomAccounts\": true,\n            \"randomBatchSizeLimit\": 200,\n            \"canSpecifyUsernamePrefix\": true,\n            \"canSetFutureStartDate\": false,\n            \"startDateFutureLimitDays\": 1\n        },\n        \"managePermission\": \"ALLACCOUNTS\",\n        \"otherPermissions\": {\n            \"canUpdateGuestContactInfo\": true,\n            \"canViewGuestPasswords\": true,\n            \"canSendSmsNotifications\": false,\n            \"canResetGuestPasswords\": true,\n            \"canExtendGuestAccounts\": true,\n            \"canDeleteGuestAccounts\": true,\n            \"canSuspendGuestAccounts\": true,\n            \"requireSuspensionReason\": false,\n            \"canReinstateSuspendedAccounts\": true,\n            \"canApproveSelfregGuests\": true,\n            \"limitApprovalToSponsorsGuests\": false,\n            \"canAccessViaRest\": false\n        }\n    }\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/ers/config/sponsorgroup/{{id}}",
 							"host": [
